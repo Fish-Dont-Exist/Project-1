@@ -12,20 +12,33 @@ public class ArrayBagTest
      */
     public static void main(String[] args)
     {
+        // Adding to an initialily empty bag with sufficient capacity.
+        System.out.println("Testing an initially empty bag with sufficient capacity: ");
+
+        BagInterface<String> aBag = new ResizableArrayBag<>();
+
+        String[] contentsOfBag1 = {"A", "B", "A"};
+
+
         // Here we will test the three methods
-        String[] bag1 = {"a", "b", "c"};
-        String[] bag2 = {"a", "a", "d", "e"};
-        ResizableArrayBag<String[]> baga = new ResizableArrayBag<>(bag1);
-        ResizableArrayBag<String[]> bagb = new ResizableArrayBag<>(bag2);
-
-        int[] intBag1 = {1, 2, 3};
-        int[] intBag2 = {3, 3, 1};
-        ResizableArrayBag<int[]> intBaga = new ResizableArrayBag<>(intBag1);
-        ResizableArrayBag<int[]> intBagb = new ResizableArrayBag<>(intBag2);
-
-
+//        String[] bag1 = {"a", "b", "c"};
+//        String[] bag2 = {"a", "a", "d", "e"};
+//        ResizableArrayBag<String[]> baga = new ResizableArrayBag<>(bag1);
+//        ResizableArrayBag<String[]> bagb = new ResizableArrayBag<>(bag2);
+//
+//        int[] intBag1 = {1, 2, 3};
+//        int[] intBag2 = {3, 3, 1};
+//        ResizableArrayBag<int[]> intBaga = new ResizableArrayBag<>(intBag1);
+//        ResizableArrayBag<int[]> intBagb = new ResizableArrayBag<>(intBag2);
 
 
+
+
+    }
+
+    public static void testUnion(BagInterface<String> aBag, BagInterface<String> bBag, String[] content)
+    {
+        System.out.print("Unioning the two bags: ");
     }
 
 }
