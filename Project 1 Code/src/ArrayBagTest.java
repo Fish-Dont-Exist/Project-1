@@ -1,4 +1,4 @@
-import java.lang.reflect.Array;
+import java.util.Arrays;
 
 /**
  * Client program that contains a main method to test the three methods. This implements the three methods.
@@ -18,6 +18,8 @@ public class ArrayBagTest
         BagInterface<String> aBag = new ResizableArrayBag<>();
 
         String[] contentsOfBag1 = {"A", "B", "A"};
+        String[] contentsOfBag2 = {"C", "D", "A"};
+
 
 
         // Here we will test the three methods

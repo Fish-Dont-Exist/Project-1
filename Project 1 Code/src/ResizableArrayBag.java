@@ -48,6 +48,15 @@ public class ResizableArrayBag<T> implements BagInterface<T>
         return false;
     }
 
+    /**
+     * Returns true if the bag is full, or false if not
+     * @return
+     */
+    private boolean isArrayFull()
+    {
+        return numberOfEntries >= bag.length;
+    } // end isArrayFull
+
     @Override
     public T remove()
     {
