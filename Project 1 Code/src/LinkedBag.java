@@ -81,7 +81,7 @@ public T remove()
    T result = null;
    if (firstNode != null)
    {
-      result = (T) firstNode.getData(); //Casting firstNode.getData to (T) because of previous error unsure if this will fix it
+      result = firstNode.getData();
       firstNode = firstNode.getNextNode();
       numberOfEntries--;
    }
@@ -145,7 +145,7 @@ public T[] toArray()
    Node currentNode = firstNode;
    while ((index < numberOfEntries) && (currentNode != null))
    {
-      result[index] = (T) currentNode.getData(); // Same error as above not quite sure why
+      result[index] = currentNode.getData(); 
       index++;
       currentNode = currentNode.getNextNode();
    }//end while
@@ -154,9 +154,9 @@ public T[] toArray()
 
 
 
-class Node<T>
+class Node
 {
-   private T data; //Entry in the bag
+   private T    data; //Entry in the bag
    private Node next; //Link to the next node
 
    //Constructors
