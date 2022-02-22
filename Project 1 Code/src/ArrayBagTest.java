@@ -18,7 +18,7 @@ public class ArrayBagTest
         BagInterface<String> aBag = new ResizableArrayBag<>(6);
 
         String[] contentsOfBag1 = {"A", "B", "A"};
-        String[] contentsOfBag2 = {"C", "D", "A"};
+        String[] contentsOfBag2 = {"A", "B"};
         String[] contentsOfBag3 = {"Z"};
 
         testAdd(aBag, contentsOfBag1);
@@ -28,6 +28,20 @@ public class ArrayBagTest
         testAdd(aBag, contentsOfBag3);
         System.out.print("\n The current size of the bag is: " + aBag.getCurrentSize());
 
+        System.out.print("\n----------------------------------------------------------------------------------\n");
+        // Testing union of two bags
+        BagInterface<String> bag1 = new ResizableArrayBag<>(3);
+        testAdd(bag1, contentsOfBag1);
+        System.out.println();
+        BagInterface<String> bag2 = new ResizableArrayBag<>(2);
+        testAdd(bag2, contentsOfBag2);
+        System.out.println();
+
+        BagInterface<String> result;
+        result = bag1.union(bag2);
+
+        System.out.println("The union of the bag is: ");
+        displayBag(result);
         
 
 
@@ -62,7 +76,7 @@ public class ArrayBagTest
         } // end for
 
         System.out.println();
-        displayBag(aBag);
+//        displayBag(aBag);
     }
 
     public static void displayBag(BagInterface<String> aBag)

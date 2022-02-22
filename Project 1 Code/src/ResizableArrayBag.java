@@ -26,11 +26,21 @@ public class ResizableArrayBag<T> implements BagInterface<T>
      */
     public ResizableArrayBag(int desiredCapacity)
     {
-        // The case is safe because the new array contains null entries
-        @SuppressWarnings("unchecked")
-        T[] tempbag = (T[]) new Object[desiredCapacity]; // unchecked cast
-        bag = tempbag;
-        numberOfEntries = 0;
+        integrityOK = false;
+        if (desiredCapacity <= MAX_CAPACITY)
+        {
+            // The case is safe because the new array contains null entries
+            @SuppressWarnings("unchecked")
+            T[] tempbag = (T[]) new Object[desiredCapacity]; // unchecked cast
+            bag = tempbag;
+            numberOfEntries = 0;
+            integrityOK = true; // Last action
+        }
+        else
+        {
+            throw new IllegalStateException("Attempt to create a bag whose capacity exceeds allowed maximum.");
+        }
+
     } // End constructor
 
     // Public methods
@@ -166,7 +176,7 @@ public class ResizableArrayBag<T> implements BagInterface<T>
     {
         // The case is safe because the new array contains null entries.
         @SuppressWarnings("unchecked")
-                T[] result = (T[]) new Object[numberOfEntries];
+        T[] result = (T[]) new Object[numberOfEntries];
         for (int index = 0; index < numberOfEntries; index++)
         {
             result[index] = bag[index];
@@ -177,9 +187,28 @@ public class ResizableArrayBag<T> implements BagInterface<T>
 
     // Implement the three methods union, intersection, and difference for resizable arrays.
     @Override
-    public T union(T entry)
+    public BagInterface<T> union(BagInterface<T> bag2)
     {
-        return null;
+        checkIntegrity();
+        BagInterface<T> result = new ResizableArrayBag<>();
+
+        T[] bag1 = this.toArray();
+
+        // Add all the elements from bag1 to the result
+        for (T element : bag1 )
+        {
+            result.add(element);
+        }
+
+        // Add all the elements from bag2 to the result
+        @SuppressWarnings("unchecked")
+        T[] otherBag = (T[]) bag2.toArray();
+        for (T element : otherBag)
+        {
+            result.add(element);
+        }
+
+        return result;
     }
 
     @Override
@@ -194,6 +223,10 @@ public class ResizableArrayBag<T> implements BagInterface<T>
         return null;
     }
 
+    private T duplicate(T bag)
+    {
+        return null;
+    }
 
     // Private methods
     /**

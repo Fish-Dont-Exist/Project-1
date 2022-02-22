@@ -152,9 +152,14 @@ public T[] toArray()
    return result;
 }
 
+   @Override
+   public BagInterface union(BagInterface entry)
+   {
+      return null;
+   }
 
 
-class Node
+   class Node
 {
    private T    data; //Entry in the bag
    private Node next; //Link to the next node
