@@ -28,6 +28,7 @@ public class ArrayBagTest
         testAdd(aBag, contentsOfBag3);
         System.out.print("\n The current size of the bag is: " + aBag.getCurrentSize());
 
+        
 
 
 
@@ -42,8 +43,6 @@ public class ArrayBagTest
 //        int[] intBag2 = {3, 3, 1};
 //        ResizableArrayBag<int[]> intBaga = new ResizableArrayBag<>(intBag1);
 //        ResizableArrayBag<int[]> intBagb = new ResizableArrayBag<>(intBag2);
-
-
 
 
     }
