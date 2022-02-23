@@ -52,7 +52,8 @@ public boolean add(T newEntry)
 {
    //Adding to the beginning of the chain
    Node newNode = new Node(newEntry);
-   newNode.next = firstNode; // New node reference is the rest of the chain
+   newNode.setNextNode(firstNode);
+//   newNode.next = firstNode; // New node reference is the rest of the chain
 
    firstNode = newNode; // New node is at the beginning of the chain
    numberOfEntries++;
@@ -159,45 +160,45 @@ public T[] toArray()
    }
 
 
-   class Node
-{
-   private T    data; //Entry in the bag
-   private Node next; //Link to the next node
-
-   //Constructors
-   private Node(T dataPortion)
+   private class Node
    {
-      this(dataPortion, null);
-   }//End constructor
+      private T    data; //Entry in the bag
+      private Node next; //Link to the next node
 
-   private Node(T dataPortion, Node nextNode)
-   {
-      data = dataPortion;
-      next = nextNode;
-   }//End constructor
+      //Constructors
+      private Node(T dataPortion)
+      {
+         this(dataPortion, null);
+      }//End constructor
 
-   //Methods
-   private T getData()
-   {
-      return data;
-   }//End getData
+      private Node(T dataPortion, Node nextNode)
+      {
+         data = dataPortion;
+         next = nextNode;
+      }//End constructor
 
-   private void setData(T newData)
-   {
-      data = newData;
-   }//End setData
+      //Methods
+      private T getData()
+      {
+         return data;
+      }//End getData
 
-   private Node getNextNode()
-   {
-      return next;
-   }//End getNextNode
+      private void setData(T newData)
+      {
+         data = newData;
+      }//End setData
 
-   private void setNextNode(Node nextNode)
-   {
-      next = nextNode;
-   }//End setNextNode
+      private Node getNextNode()
+      {
+         return next;
+      }//End getNextNode
 
-   
-}
+      private void setNextNode(Node nextNode)
+      {
+         next = nextNode;
+      }//End setNextNode
+
+
+   }
 
 }

@@ -36,9 +36,9 @@ public class ArrayBagTest
         BagInterface<String> bag2 = new ResizableArrayBag<>(2);
         testAdd(bag2, contentsOfBag2);
         System.out.println();
-
-        BagInterface<String> result;
-        result = bag1.union(bag2);
+        
+        
+        BagInterface<String> result = bag1.union(bag2);
 
         System.out.println("The union of the bag is: ");
         displayBag(result);
