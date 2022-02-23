@@ -3,7 +3,7 @@ import java.util.Arrays;
 /**
  * Client program that contains a main method to test the three methods. This implements the three methods.
  */
-public class ArrayBagTest
+public class ResizableArrayBagTest
 {
     /**
      * The main will test the three methods union, intersection, and difference we will implement for the class
