@@ -236,7 +236,7 @@ public class ResizableArrayBag<T> implements BagInterface<T>
     }
 
     @Override
-    public T difference(T entry)
+    public BagInterface<T> difference(BagInterface<T> entry)
     {
         return null;
     }

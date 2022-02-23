@@ -14,17 +14,17 @@ public LinkedBag()
 
 //Union, Difference, Intersection methods for linked list
 
-public T union(T entry)
+public BagInterface<T> union(BagInterface<T> entry)
 {
    return null;
 }
 
-public T difference(T entry)
+public BagInterface<T> difference(BagInterface<T> entry)
 {
    return null;
 }
 
-public T intersection(T entry)
+public BagInterface<T> intersection(BagInterface<T> entry)
 {
    return null;
 }
@@ -152,13 +152,6 @@ public T[] toArray()
    }//end while
    return result;
 }
-
-   @Override
-   public BagInterface union(BagInterface entry)
-   {
-      return null;
-   }
-
 
    private class Node
    {

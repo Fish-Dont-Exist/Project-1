@@ -88,5 +88,5 @@ public interface BagInterface<T>
      * @return a new bag that is the difference of the bag receiving the call to the method and the bag that is the
      * method's one argument, which here is bag2.
      */
-    public T difference(T entry);
+    public BagInterface<T> difference(BagInterface<T> entry);
 }
