@@ -14,9 +14,24 @@ public LinkedBag()
 
 //Union, Difference, Intersection methods for linked list
 
-public BagInterface<T> union(BagInterface<T> entry)
+public BagInterface<T> union(BagInterface<T> bag2)
 {
-   return null;
+   BagInterface<T> result = new LinkedBag<>();
+
+   // Add all the elements from bag1 to the result
+   for (int index = 0; index < getCurrentSize() ; index++)
+   {
+      result.add(firstNode.getData());
+//      result.add(bag[index]);
+   }
+
+   T[] otherBag = (T[]) bag2.toArray();
+   for (int index = 0; index < bag2.getCurrentSize() ; index++)
+   {
+      result.add(otherBag[index]);
+   }
+
+   return result;
 }
 
 public BagInterface<T> difference(BagInterface<T> entry)

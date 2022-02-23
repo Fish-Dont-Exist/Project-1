@@ -13,6 +13,19 @@ public class LinkedBagTest
         displayBag(aBag);
 
 
+        // New bag for union
+        System.out.println();
+        BagInterface<String> bBag = new LinkedBag<>();
+        String[] contentsOfBag2 = {"Z", "B", "C"};
+        testAdd(bBag, contentsOfBag2);
+
+
+        // Test union
+        System.out.println("The new bag after the union: ");
+        BagInterface<String> result = aBag.union(bBag);
+
+
+        displayBag(result);
 
 
     }
@@ -28,7 +41,7 @@ public class LinkedBagTest
 
     public static void testUnion(BagInterface<String> aBag, BagInterface<String> bBag)
     {
-        
+        //
     }
 
     public static void testAdd(BagInterface<String> aBag, String[] content)

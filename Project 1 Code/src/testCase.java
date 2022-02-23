@@ -48,4 +48,6 @@ Expected result: Throw error
 
 /*
 Test case 3:
-Array 1 = 
+Array 1 =
+
+ */
