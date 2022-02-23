@@ -78,7 +78,7 @@ public interface BagInterface<T>
      * @return a new bag that is the intersection of the bag receiving the call to the method and the bag that is the
      * method' one argument which here is bag2.
      */
-    public T intersection(T entry);
+    public BagInterface intersection(BagInterface<T> bag2);
 
 
     /***

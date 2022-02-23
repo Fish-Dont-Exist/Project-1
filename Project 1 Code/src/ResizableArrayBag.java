@@ -192,25 +192,51 @@ public class ResizableArrayBag<T> implements BagInterface<T>
         checkIntegrity();
         BagInterface<T> result = new ResizableArrayBag<>();
 
+        T[] bag1 = this.toArray();
+
         // Add all the elements from bag1 to the result
-        for (int index = 0; index < getCurrentSize() ; index++)
+        for (T element : bag1 )
         {
-            result.add(bag[index]);
+            result.add(element);
         }
 
+        // Add all the elements from bag2 to the result
+        @SuppressWarnings("unchecked")
         T[] otherBag = (T[]) bag2.toArray();
-        for (int index = 0; index < bag2.getCurrentSize() ; index++)
+        for (T element : otherBag)
         {
-            result.add(otherBag[index]);
+            result.add(element);
         }
 
         return result;
     }
 
     @Override
-    public T intersection(T entry)
+    public BagInterface<T> intersection(BagInterface<T> bag2)
     {
-        return null;
+        checkIntegrity();
+        // Testing for empty bags; will return the empty bag if found
+        if (this.isEmpty())
+        {
+            return this;
+        }
+        else if (bag2.isEmpty())
+        {
+            return bag2;
+        }
+
+        T[] bag3 = new bagInterface[1];
+
+        for (int i = 0; i < this.length; i++)
+        {
+            if (bag2.contains(this[i]))
+            {
+                bag3.add(this[i]);
+                //ill figure this out later
+            }
+        }
+
+        return bag3;
     }
 
     @Override
