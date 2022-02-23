@@ -3,8 +3,8 @@
  */
 public class LinkedBag<T> implements BagInterface<T>
 {
-   private Node firstNode;
-   private int numberOfEntries;
+private Node firstNode;
+private int numberOfEntries;
 
 public LinkedBag()
 {
