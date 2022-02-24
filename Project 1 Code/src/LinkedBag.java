@@ -16,24 +16,28 @@ public LinkedBag()
 
 public BagInterface<T> union(BagInterface<T> bag2)
 {
+   // Initialize result that will be returned and the currentNode
    BagInterface<T> result = new LinkedBag<>();
+   Node currentNode = firstNode;
 
    // Add all the elements from bag1 to the result
-   for (int index = 0; index < getCurrentSize() ; index++)
+   int counter = 0;
+   while ((counter < numberOfEntries) && (currentNode != null))
    {
-      result.add(firstNode.getData());
-//      result.add(bag[index]);
+      result.add(currentNode.getData());        // add the data of the current node
+      currentNode = currentNode.getNextNode();  // traverse the chain (visit the next node
+      counter ++;
    }
 
+   // Add all the elements from bag2 to the result
    T[] otherBag = (T[]) bag2.toArray();
-   for (int index = 0; index < bag2.getCurrentSize() ; index++)
+   for (int index = 0; index < bag2.getCurrentSize(); index++)
    {
       result.add(otherBag[index]);
    }
 
    return result;
 }
-
 
 public BagInterface<T> intersection(BagInterface<T> entry)
 {
@@ -99,8 +103,8 @@ public void clear()
 public boolean add(T newEntry)
 {
    //Adding to the beginning of the chain
-   Node newNode = new Node(newEntry);
-   newNode.setNextNode(firstNode);
+   Node newNode = new Node(newEntry); // now newNode.data = newEntry, newNode.next = null
+   newNode.setNextNode(firstNode);    // now newNode.data = newEntry, newNode.next = firstNode
 //   newNode.next = firstNode; // New node reference is the rest of the chain
 
    firstNode = newNode; // New node is at the beginning of the chain
@@ -207,12 +211,12 @@ public T[] toArray()
       private Node next; //Link to the next node
 
       //Constructors
-      private Node(T dataPortion)
+      private Node(T dataPortion) // This is the constructor that creates the initial node (the first desk)
       {
          this(dataPortion, null);
       }//End constructor
 
-      private Node(T dataPortion, Node nextNode)
+      private Node(T dataPortion, Node nextNode) // This is the constructor for a non-empty chain.
       {
          data = dataPortion;
          next = nextNode;

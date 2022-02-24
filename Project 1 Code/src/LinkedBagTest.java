@@ -16,7 +16,7 @@ public class LinkedBagTest
         // New bag for union
         System.out.println();
         BagInterface<String> bBag = new LinkedBag<>();
-        String[] contentsOfBag2 = {"Z", "B", "C"};
+        String[] contentsOfBag2 = {"Z", "Y", "X"};
         testAdd(bBag, contentsOfBag2);
 
 
@@ -27,8 +27,19 @@ public class LinkedBagTest
 
         displayBag(result);
 
+        System.out.println();
+        // what happens with empty bags
+        System.out.println("Empty Bags. ");
+        BagInterface<String> bag1 = new LinkedBag<>();
+        BagInterface<String> bag2 = new LinkedBag<>();
+
+        BagInterface<String> r1 = bag1.union(bag2);
+        displayBag(r1);
+
+
 
     }
+
     public static void displayBag(BagInterface<String> aBag)
     {
         Object[] bagArray = aBag.toArray();
