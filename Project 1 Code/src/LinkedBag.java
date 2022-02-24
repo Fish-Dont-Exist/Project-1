@@ -34,14 +34,47 @@ public BagInterface<T> union(BagInterface<T> bag2)
    return result;
 }
 
-public BagInterface<T> difference(BagInterface<T> entry)
-{
-   return null;
-}
 
 public BagInterface<T> intersection(BagInterface<T> entry)
 {
    return null;
+}
+
+public BagInterface<T> difference(BagInterface<T> bag2)
+{
+   BagInterface<T> b3 = new LinkedBag<>();
+   Node currentNode = firstNode;
+   T[] b2 = bag2.toArray();
+   int amount = 0;
+   for(int i = 0; i < getCurrentSize(); i++)
+   {
+      T entry = currentNode.getData();
+      
+      amount = this.getFrequencyOf(currentNode.getData());
+      int sub = 0;
+      if (b3.contains(entry))
+      {
+         currentNode = currentNode.getNextNode();
+      }
+      else
+      {
+         for (int k = 0; k < bag2.getCurrentSize(); k ++)
+         {
+            if(entry.equals(b2[k]))
+            {
+               sub += 1;
+            }
+         }
+
+         amount = amount - sub;
+         for(int j = 0; j < amount; j++)
+         {
+            b3.add(entry);
+         }
+         currentNode = currentNode.getNextNode();
+      }  
+   }
+   return b3;
 }
 
 
