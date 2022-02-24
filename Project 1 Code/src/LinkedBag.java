@@ -16,27 +16,35 @@ public LinkedBag()
 
 public BagInterface<T> union(BagInterface<T> bag2)
 {
-   // Initialize result that will be returned and the currentNode
-   BagInterface<T> result = new LinkedBag<>();
-   Node currentNode = firstNode;
-
-   // Add all the elements from bag1 to the result
-   int counter = 0;
-   while ((counter < numberOfEntries) && (currentNode != null))
+   try
    {
-      result.add(currentNode.getData());        // add the data of the current node
-      currentNode = currentNode.getNextNode();  // traverse the chain (visit the next node
-      counter ++;
-   }
+      // Initialize result that will be returned and the currentNode
+      BagInterface<T> result = new LinkedBag<>();
+      Node currentNode = firstNode;
 
-   // Add all the elements from bag2 to the result
-   T[] otherBag = (T[]) bag2.toArray();
-   for (int index = 0; index < bag2.getCurrentSize(); index++)
+      // Add all the elements from bag1 to the result
+      int counter = 0;
+      while ((counter < numberOfEntries) && (currentNode != null))
+      {
+         result.add(currentNode.getData());        // add the data of the current node
+         currentNode = currentNode.getNextNode();  // traverse the chain (visit the next node
+         counter ++;
+      }
+
+      // Add all the elements from bag2 to the result
+      T[] otherBag = (T[]) bag2.toArray();
+      for (int index = 0; index < bag2.getCurrentSize(); index++)
+      {
+         result.add(otherBag[index]);
+      }
+
+      return result;
+   }
+   catch (NullPointerException e)
    {
-      result.add(otherBag[index]);
+      System.out.println(e.getMessage() + " nice going nerd.");
    }
-
-   return result;
+   return null;
 }
 
 public BagInterface<T> intersection(BagInterface<T> entry)

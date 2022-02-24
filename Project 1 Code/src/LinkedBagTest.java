@@ -1,6 +1,6 @@
 public class LinkedBagTest
 {
-    public static void main(String[] args)
+    public static void main(String[] args) throws NullPointerException
     {
         // Tests on a bag that is empty
         System.out.println("Creating an empty bag.");
@@ -35,6 +35,29 @@ public class LinkedBagTest
 
         BagInterface<String> r1 = bag1.union(bag2);
         displayBag(r1);
+
+        // Mixing LinkedBag with ResizableArrayBag
+        System.out.println("Mixing Resizable Array Bag with LinkedBag");
+        BagInterface<String> LBag = new LinkedBag<>();
+        BagInterface<String> RABBag = new ResizableArrayBag<>();
+        String[] lcontents = {"L", "B", "A", "G"};
+        String[] RABContents = {"R", "A", "B"};
+
+        testAdd(LBag, lcontents);
+        testAdd(RABBag, RABContents);
+
+        BagInterface<String> mixing =  LBag.union(RABBag);
+
+        displayBag(mixing);
+
+        System.out.println();
+
+        // null bag test
+        System.out.println("We will now be testing a null bag. ");
+//        BagInterface<String> b1 = null;
+        BagInterface<String> b2 = null;
+
+        BagInterface<String> r2 = LBag.union(b2);
 
 
 

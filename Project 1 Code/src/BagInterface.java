@@ -70,15 +70,15 @@ public interface BagInterface<T>
      * @param entry A bag of items will be added to the end of the bag that is calling the method
      * @return union of the two collections
      */
-    public BagInterface union(BagInterface<T> entry);
+    public BagInterface<T> union(BagInterface<T> entry);
 
     /***
      * The intersection of two collections is contains the overlapping entries. That is, the overlapping entries.
-     * @param entry A bag of items that will be interected with the bag that is calling the method.
+     * @param bag2 A bag of items that will be interected with the bag that is calling the method.
      * @return a new bag that is the intersection of the bag receiving the call to the method and the bag that is the
      * method' one argument which here is bag2.
      */
-    public BagInterface intersection(BagInterface<T> bag2);
+    public BagInterface<T> intersection(BagInterface<T> bag2);
 
 
     /***
