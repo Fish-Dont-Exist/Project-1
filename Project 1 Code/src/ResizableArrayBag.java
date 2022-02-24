@@ -237,11 +237,32 @@ public class ResizableArrayBag<T> implements BagInterface<T>
     }
 
     @Override
-    public BagInterface<T> difference(BagInterface<T> entry)
+    public BagInterface<T> difference(BagInterface<T> bag2)
     {
-        return null;
-    }
+      checkIntegrity(); //Validates given array
+      T[] b1 = bag; //Copies main bag
+      T[] b2 = bag2.toArray(); //Copies Parameter and converts it to array
+      BagInterface<T> b3 = new ResizableArrayBag<>(); //initializes new Array Bag
 
+      for (int i = 0; i < this.getCurrentSize(); i++)
+      {
+         boolean match = false; // Reset match variable for each itteration
+         for (int j = 0; j < bag2.getCurrentSize(); j++)
+         {
+            if(b1[i].equals(b2[j]))
+            {
+               b2[j] = null;
+               match = true;
+               break;
+            }//If there is a match set item in b2 to null and break loop
+         }//End of Loop L for b2
+         if (!match)
+         {
+            b3.add(b1[i]);
+         }//If item is not cancelled out add it to b3
+      }//End of Loop I for b1
+      return b3;
+   }
     private T duplicate(T bag)
     {
         return null;
