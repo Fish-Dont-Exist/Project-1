@@ -43,7 +43,19 @@ public class ResizableArrayBagTest
         System.out.println("The union of the bag is: ");
         displayBag(result);
         
+        // Testing intersection of two bags
 
+        String[] testBag4 = {"a", "c", "a", "u", "j", "u"};
+        String[] testBag5 = {"c", "a", "b", "u", "u"};
+
+        BagInterface<String> tBag4 = new ResizableArrayBag<>(25);
+        BagInterface<String> tBag5 = new ResizableArrayBag<>(25);
+        testAdd(testBag4, tBag4);
+        testAdd(testBag5, tBag5);
+
+        BagInterface<String> tBag6 = tBag4.intersection(tBag5);
+        System.out.println("The intersection of the bag is: ");
+        displayBag(tBag6);
 
 
 

@@ -210,30 +210,33 @@ public class ResizableArrayBag<T> implements BagInterface<T>
     @Override
     public BagInterface<T> intersection(BagInterface<T> bag2)
     {
-        return null;
-//        checkIntegrity();
-//        // Testing for empty bags; will return the empty bag if found
-//        if (this.isEmpty())
-//        {
-//            return this;
-//        }
-//        else if (bag2.isEmpty())
-//        {
-//            return bag2;
-//        }
-//
-//        T[] bag3 = new bagInterface[1];
-//
-//        for (int i = 0; i < this.length; i++)
-//        {
-//            if (bag2.contains(this[i]))
-//            {
-//                bag3.add(this[i]);
-//                //ill figure this out later
-//            }
-//        }
-//
-//        return bag3;
+        checkIntegrity();
+        // Testing for empty bags; will return the empty bag if found
+        else if (this.isEmpty())
+        {
+           return this;
+        }
+        else if (bag2.isEmpty())
+        {
+            return bag2;
+        }
+        else if (this.equals(bag2))
+        {
+            return this;
+        }
+        T[] bag1 = this.toArray();
+        BagInterface<T> bag3 = new ResizableArrayBag<>();
+
+        for (int i = 0; i < this.length; i++)
+        {
+            if (bag2.contains(this[i]))
+            {
+                int place = bag2.getIndexOf(this[i]);
+                bag3.add(bag2[place]);
+                bag2.remove(bag2[place]);
+            }
+        }
+        return bag3;
     }
 
     @Override
