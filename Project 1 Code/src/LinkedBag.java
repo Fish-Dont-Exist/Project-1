@@ -18,13 +18,27 @@ public BagInterface<T> union(BagInterface<T> bag2)
 {
    BagInterface<T> result = new LinkedBag<>();
 
+   Node currentNode = firstNode;
+   result.add(currentNode.getData());
+
+   currentNode.setNextNode(firstNode);
+   result.add(currentNode.getData());
+
+   currentNode.setNextNode(firstNode);
+   result.add(currentNode.getData());
+
    // Add all the elements from bag1 to the result
    for (int index = 0; index < getCurrentSize() ; index++)
    {
-      result.add(firstNode.getData());
-//      result.add(bag[index]);
+      // We must TRAVERSE the chain
+//      Node currentNode = firstNode;
+      result.add(currentNode.getData());
+
+      currentNode = currentNode.getNextNode();
+
    }
 
+   // Add all the elements from bag2 to the result (this stays the same as in the RAB)
    T[] otherBag = (T[]) bag2.toArray();
    for (int index = 0; index < bag2.getCurrentSize() ; index++)
    {
@@ -66,8 +80,8 @@ public void clear()
 public boolean add(T newEntry)
 {
    //Adding to the beginning of the chain
-   Node newNode = new Node(newEntry);
-   newNode.setNextNode(firstNode);
+   Node newNode = new Node(newEntry); // now newNode.data = newEntry, newNode.next = null
+   newNode.setNextNode(firstNode);    // now newNode.data = newEntry, newNode.next = firstNode
 //   newNode.next = firstNode; // New node reference is the rest of the chain
 
    firstNode = newNode; // New node is at the beginning of the chain
@@ -174,12 +188,12 @@ public T[] toArray()
       private Node next; //Link to the next node
 
       //Constructors
-      private Node(T dataPortion)
+      private Node(T dataPortion) // This is the constructor that creates the initial node (the first desk)
       {
          this(dataPortion, null);
       }//End constructor
 
-      private Node(T dataPortion, Node nextNode)
+      private Node(T dataPortion, Node nextNode) // This is the constructor for a non-empty chain.
       {
          data = dataPortion;
          next = nextNode;

@@ -16,7 +16,7 @@ public class LinkedBagTest
         // New bag for union
         System.out.println();
         BagInterface<String> bBag = new LinkedBag<>();
-        String[] contentsOfBag2 = {"Z", "B", "C"};
+        String[] contentsOfBag2 = {"Z", "Y", "X"};
         testAdd(bBag, contentsOfBag2);
 
 
