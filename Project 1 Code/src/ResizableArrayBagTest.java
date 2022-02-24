@@ -50,8 +50,8 @@ public class ResizableArrayBagTest
 
         BagInterface<String> tBag4 = new ResizableArrayBag<>(25);
         BagInterface<String> tBag5 = new ResizableArrayBag<>(25);
-        testAdd(testBag4, tBag4);
-        testAdd(testBag5, tBag5);
+        testAdd(tBag4, testBag4);
+        testAdd(tBag5, testBag5);
 
         BagInterface<String> tBag6 = tBag4.intersection(tBag5);
         System.out.println("The intersection of the bag is: ");
@@ -110,6 +110,42 @@ public class ResizableArrayBagTest
       displayBag(diffBag3);//Output should be the contents of B2
 
 
+
+        // Array Bag test for intersection
+        // Equal size arrays
+        System.out.println("Intersection general use case where arrays are same size");
+        BagInterface<String> interBag1 = new ResizableArrayBag<>();//Initializing bag1 as a resizeable array bag.
+        System.out.println("Displaying the contents of bag1");
+        String[] i1 = {"A", "B", "C"};
+        testAdd(interBag1, i1);// Adding the string a to bag1
+        System.out.println("\nDisplaying the contents of bag2");
+
+        BagInterface<String> interBag2 = new ResizableArrayBag<>();
+        String[] i2 = {"A", "C", "D"};
+        testAdd(interBag2, i2);
+
+        BagInterface<String> interBag3 = interBag1.intersection(interBag2); //Expected output is A, C
+        System.out.println("\nDisplaying the difference between the two");
+
+        displayBag(interBag3);
+
+
+        // Different size arrays
+        System.out.println("Intersection general use case where arrays are different size");
+        BagInterface<String> interBag4 = new ResizableArrayBag<>();//Initializing bag1 as a resizeable array bag.
+        System.out.println("Displaying the contents of bag1");
+        String[] i4 = {"A", "B"};
+        testAdd(interBag4, i4);// Adding the string a to bag1
+        System.out.println("\nDisplaying the contents of bag2");
+
+        BagInterface<String> interBag5 = new ResizableArrayBag<>();
+        String[] i5 = {"A", "C", "D", "B", "B"};
+        testAdd(interBag5, i5);
+
+        BagInterface<String> interBag6 = interBag4.intersection(interBag5); //Expected output is A, C
+        System.out.println("\nDisplaying the difference between the two");
+
+        displayBag(interBag6);
 
 
         // Here we will test the three methods

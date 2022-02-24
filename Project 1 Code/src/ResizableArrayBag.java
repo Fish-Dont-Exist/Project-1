@@ -212,7 +212,7 @@ public class ResizableArrayBag<T> implements BagInterface<T>
     {
         checkIntegrity();
         // Testing for empty bags; will return the empty bag if found
-        else if (this.isEmpty())
+        if (this.isEmpty())
         {
            return this;
         }
@@ -224,16 +224,36 @@ public class ResizableArrayBag<T> implements BagInterface<T>
         {
             return this;
         }
-        T[] bag1 = this.toArray();
+//        T[] bag1 = this.toArray();
         BagInterface<T> bag3 = new ResizableArrayBag<>();
+        BagInterface<T> bagUsed = new ResizableArrayBag<>();
 
-        for (int i = 0; i < this.length; i++)
+        for (int i = 0; i < getCurrentSize(); i++)
         {
-            if (bag2.contains(this[i]))
+            int freq1 = getFrequencyOf(bag[i]); // This will get the frequency of the bag
+            if (bag2.contains(bag[i]) && !(bagUsed.contains(bag[i])))
             {
-                int place = bag2.getIndexOf(this[i]);
-                bag3.add(bag2[place]);
-                bag2.remove(bag2[place]);
+                // If bag2 contains this item, we will find the frequency of the item
+                int freq2 = getFrequencyOf(bag[i]);
+
+                // Store this item in a used bag so we don't call it again
+                bagUsed.add(bag[i]);
+
+                // Now we store the value that is SMALLER
+                if (freq1 >= freq2)
+                {
+                    for (int j = 0; j < freq2; j++)
+                    {
+                        bag3.add(bag[i]);
+                    }
+                }
+                else
+                {
+                    for (int j = 0; j < freq1; j++)
+                    {
+                        bag3.add(bag[i]);
+                    }
+                }
             }
         }
         return bag3;
