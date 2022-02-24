@@ -246,7 +246,7 @@ public class ResizableArrayBag<T> implements BagInterface<T>
 
       for (int i = 0; i < this.getCurrentSize(); i++)
       {
-         boolean match = false; // Reset match variable for each itteration
+         boolean match = false; // Reset match variable for each iteration
          for (int j = 0; j < bag2.getCurrentSize(); j++)
          {
             if(b1[i].equals(b2[j]))
@@ -263,7 +263,8 @@ public class ResizableArrayBag<T> implements BagInterface<T>
       }//End of Loop I for b1
       return b3;
    }
-    private T duplicate(T bag)
+
+   private T duplicate(T bag)
     {
         return null;
     }

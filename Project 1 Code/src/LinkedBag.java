@@ -16,38 +16,28 @@ public LinkedBag()
 
 public BagInterface<T> union(BagInterface<T> bag2)
 {
+   // Initialize result that will be returned and the currentNode
    BagInterface<T> result = new LinkedBag<>();
-
    Node currentNode = firstNode;
-   result.add(currentNode.getData());
-
-   currentNode.setNextNode(firstNode);
-   result.add(currentNode.getData());
-
-   currentNode.setNextNode(firstNode);
-   result.add(currentNode.getData());
 
    // Add all the elements from bag1 to the result
-   for (int index = 0; index < getCurrentSize() ; index++)
+   int counter = 0;
+   while ((counter < numberOfEntries) && (currentNode != null))
    {
-      // We must TRAVERSE the chain
-//      Node currentNode = firstNode;
-      result.add(currentNode.getData());
-
-      currentNode = currentNode.getNextNode();
-
+      result.add(currentNode.getData());        // add the data of the current node
+      currentNode = currentNode.getNextNode();  // traverse the chain (visit the next node
+      counter ++;
    }
 
-   // Add all the elements from bag2 to the result (this stays the same as in the RAB)
+   // Add all the elements from bag2 to the result
    T[] otherBag = (T[]) bag2.toArray();
-   for (int index = 0; index < bag2.getCurrentSize() ; index++)
+   for (int index = 0; index < bag2.getCurrentSize(); index++)
    {
       result.add(otherBag[index]);
    }
 
    return result;
 }
-
 
 public BagInterface<T> intersection(BagInterface<T> entry)
 {
