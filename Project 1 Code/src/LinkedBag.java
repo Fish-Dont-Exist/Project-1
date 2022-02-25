@@ -49,7 +49,52 @@ public BagInterface<T> union(BagInterface<T> bag2)
 
 public BagInterface<T> intersection(BagInterface<T> entry)
 {
-   return null;
+   // Set up the results bag and the used bag
+   BagInterface<T> usedBag = new LinkedBag<>();
+
+   BagInterface <T> results = new LinkedBag<>();
+   Node currentNode1 = firstNode;
+
+
+   // Check the frequency of every element in the referenced bag and then compare the frequency that appears in entry
+   int counter = 0;
+   while (counter < getCurrentSize() && (currentNode1 != null))
+   {
+      int freq1 = getFrequencyOf(currentNode1.getData());
+
+      // Check to see if it appears in entry bag and make sure that we have not already used it
+      if (entry.contains(currentNode1.getData()) && !(usedBag.contains(currentNode1.getData())))
+      {
+         // Find the frequency of the item
+         int freq2 = entry.getFrequencyOf(currentNode1.getData());
+
+         // Insert the item the minimal number of times
+         if (freq1 <= freq2)
+         {
+            for (int j = 0; j < freq1; j++)
+            {
+               results.add(currentNode1.getData());
+            }
+         }
+         else
+         {
+            for (int j = 0; j < freq2; j++)
+            {
+               results.add(currentNode1.getData());
+            }
+         }
+         // Add element to used bag
+         usedBag.add(currentNode1.getData());
+
+      }
+
+      // Change the current node to the next node
+      currentNode1 = currentNode1.getNextNode();
+
+      counter++;
+   }
+
+   return results;
 }
 
 public BagInterface<T> difference(BagInterface<T> bag2)

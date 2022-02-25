@@ -61,6 +61,26 @@ public class LinkedBagTest
 
 
 
+        // Intersection Tests
+        // When two bags are different sized
+        System.out.println("Intersection general use case when LinkedBags are different size");
+        BagInterface<String> interBag4 = new LinkedBag<>();//Initializing bag1 as a resizeable array bag.
+        System.out.println("Displaying the contents of bag1");
+        String[] i4 = {"A", "A", "A"};
+        testAdd(interBag4, i4);// Adding the string a to bag1
+        System.out.println("\nDisplaying the contents of bag2");
+
+        BagInterface<String> interBag5 = new LinkedBag<>();
+        String[] i5 = {"A", "A", "A", "B"};
+        testAdd(interBag5, i5);
+
+        BagInterface<String> interBag6 = interBag4.intersection(interBag5); //Expected output is A
+        System.out.println("\nDisplaying the intersection between the two");
+
+        displayBag(interBag6);
+
+
+
     }
 
     public static void displayBag(BagInterface<String> aBag)
