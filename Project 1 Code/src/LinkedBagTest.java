@@ -82,6 +82,56 @@ public class LinkedBagTest
 
 
 
+      // Difference Tests
+      // Normal Case - equal size linked chains
+      System.out.println("Difference general use case where linked bags are same size");
+      BagInterface<String> diffBag1 = new LinkedBag<>();// Initializing bag1 as a linked bag.
+      System.out.println("Displaying the contents of bag1");
+      String[] a = {"A", "B", "C"};
+      testAdd(diffBag1, a);// Adding the string a to bag1
+      System.out.println("\nDisplaying the contents of bag2");
+
+      BagInterface<String> diffBag2 = new LinkedBag<>();
+      String[] b = {"A", "C", "D"};
+      testAdd(diffBag2, b);
+
+      BagInterface<String> diffBag3 = diffBag1.difference(diffBag2); // Expected output is B
+      System.out.println("\nDisplaying the difference between the two");
+
+      displayBag(diffBag3);
+  
+
+      // Test Case different Size Arrays - Bigger B1
+      System.out.println("\nDifference general use case where arrays are different sizes");
+      System.out.println("\nDisplaying the what is added to bag1, total is (A B C A B) \n");
+      String[] c = {"A", "B"};
+      testAdd(diffBag1, c);// db1 Should be A B C A B
+
+      System.out.println("\nDisplaying the contents of bag2 \n");
+      displayBag(diffBag2);// db2 should be A C D
+      diffBag3 = diffBag1.difference(diffBag2); // Expected output is B A B
+      System.out.println("\nDisplaying the difference between bag1 and bag2\n");
+
+      displayBag(diffBag3);
+
+
+      System.out.println("\nDisplaying the difference between bag2 and bag1\n");
+      diffBag3 = diffBag2.difference(diffBag1); 
+      displayBag(diffBag3); // Bigger B2 (D)
+
+      BagInterface<String> diffBag4 = new LinkedBag<>();
+      BagInterface<String> diffBag5 = new LinkedBag<>();
+      System.out.println("\nOutputting difference between empty array and normal array");
+      diffBag3 = diffBag4.difference(diffBag2);
+      displayBag(diffBag3);// Output should be a nothing due to linked bag being empty
+
+      System.out.println("\nOutputting difference normal array and empty array");
+      diffBag3 = diffBag2.difference(diffBag4);
+      displayBag(diffBag3);// Output should be the contents of B2 (A C D)
+      
+      System.out.println("\nOutputting difference empty array and empty array");
+      diffBag3 = diffBag4.difference(diffBag5);
+      displayBag(diffBag3);// Output should be nothing and lnked bag is empty
     }
 
     public static void displayBag(BagInterface<String> aBag)

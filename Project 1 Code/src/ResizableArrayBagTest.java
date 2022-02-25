@@ -81,7 +81,7 @@ public class ResizableArrayBagTest
       System.out.println("\nDifference general use case where arrays are different sizes");
       System.out.println("\nDisplaying the contents of bag1 \n");
       String[] c = {"A", "B"};
-      testAdd(diffBag1, a);//db1 Should be A B C A B
+      testAdd(diffBag1, c);//db1 Should be A B C A B
 
       System.out.println("\nDisplaying the contents of bag2 \n");
       displayBag(diffBag2);//db2 should be A C D
@@ -107,7 +107,7 @@ public class ResizableArrayBagTest
       
       System.out.println("\nOutputting difference empty array and empty array");
       diffBag3 = diffBag4.difference(diffBag5);
-      displayBag(diffBag3);//Output should be the contents of B2
+      displayBag(diffBag3);//Output should be nothing as the bag is empty
 
 
 
