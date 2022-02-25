@@ -47,10 +47,10 @@ public BagInterface<T> union(BagInterface<T> bag2)
    return null;
 }
 
-public BagInterface<T> intersection(BagInterface<T> entry)
+public BagInterface<T> intersection(BagInterface<T> otherBag)
 {
    // Set up the results bag and the used bag
-   BagInterface<T> usedBag = new LinkedBag<>();
+//   BagInterface<T> usedBag = new LinkedBag<>();
 
    BagInterface <T> results = new LinkedBag<>();
    Node currentNode1 = firstNode;
@@ -60,31 +60,26 @@ public BagInterface<T> intersection(BagInterface<T> entry)
    int counter = 0;
    while (counter < getCurrentSize() && (currentNode1 != null))
    {
-      int freq1 = getFrequencyOf(currentNode1.getData());
+      // Get the data to avoid making so many function calls
+      T data = currentNode1.getData();
+
+      int freq1 = getFrequencyOf(data);
+
 
       // Check to see if it appears in entry bag and make sure that we have not already used it
-      if (entry.contains(currentNode1.getData()) && !(usedBag.contains(currentNode1.getData())))
+      if (otherBag.contains(data) && !(results.contains(data)))
       {
+
+
          // Find the frequency of the item
-         int freq2 = entry.getFrequencyOf(currentNode1.getData());
+         int freq2 = otherBag.getFrequencyOf(data);
 
          // Insert the item the minimal number of times
-         if (freq1 <= freq2)
+         int smallerNumber = Math.min(freq1, freq2);
+         for (int j = 0; j < smallerNumber; j++)
          {
-            for (int j = 0; j < freq1; j++)
-            {
-               results.add(currentNode1.getData());
-            }
+            results.add(data);
          }
-         else
-         {
-            for (int j = 0; j < freq2; j++)
-            {
-               results.add(currentNode1.getData());
-            }
-         }
-         // Add element to used bag
-         usedBag.add(currentNode1.getData());
 
       }
 

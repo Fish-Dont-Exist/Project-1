@@ -131,7 +131,7 @@ public class ResizableArrayBagTest
 
 
         // Different size arrays
-        System.out.println("Intersection general use case where arrays are different size");
+        System.out.println("\nIntersection general use case where arrays are different size");
         BagInterface<String> interBag4 = new ResizableArrayBag<>();//Initializing bag1 as a resizeable array bag.
         System.out.println("Displaying the contents of bag1");
         String[] i4 = {"A", "B"};

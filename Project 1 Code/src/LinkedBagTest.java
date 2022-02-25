@@ -52,12 +52,13 @@ public class LinkedBagTest
 
         System.out.println();
 
-        // null bag test
+        // NOTE: CANNOT TAKE CARE OF THE CASE WHEN BOTH ARE NULL
         System.out.println("We will now be testing a null bag. ");
 //        BagInterface<String> b1 = null;
         BagInterface<String> b2 = null;
 
         BagInterface<String> r2 = LBag.union(b2);
+//        BagInterface<String> r2 = b1.union(b2);
 
 
 
@@ -66,12 +67,12 @@ public class LinkedBagTest
         System.out.println("Intersection general use case when LinkedBags are different size");
         BagInterface<String> interBag4 = new LinkedBag<>();//Initializing bag1 as a resizeable array bag.
         System.out.println("Displaying the contents of bag1");
-        String[] i4 = {"A", "A", "A"};
+        String[] i4 = {"A", "B", "A", "C", "A"};
         testAdd(interBag4, i4);// Adding the string a to bag1
         System.out.println("\nDisplaying the contents of bag2");
 
         BagInterface<String> interBag5 = new LinkedBag<>();
-        String[] i5 = {"A", "A", "A", "B"};
+        String[] i5 = {"A", "C", "A", "B", "C"};
         testAdd(interBag5, i5);
 
         BagInterface<String> interBag6 = interBag4.intersection(interBag5); //Expected output is A

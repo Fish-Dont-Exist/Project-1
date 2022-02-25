@@ -224,35 +224,27 @@ public class ResizableArrayBag<T> implements BagInterface<T>
         {
             return this;
         }
-//        T[] bag1 = this.toArray();
-        BagInterface<T> bag3 = new ResizableArrayBag<>();
-        BagInterface<T> bagUsed = new ResizableArrayBag<>();
 
+        // Initialize results bag
+        BagInterface<T> bag3 = new ResizableArrayBag<>();
+
+        // Get the frequency of each element in both bags & store it in bag3 the lowest of two frequencies
         for (int i = 0; i < getCurrentSize(); i++)
         {
             int freq1 = getFrequencyOf(bag[i]); // This will get the frequency of the bag
-            if (bag2.contains(bag[i]) && !(bagUsed.contains(bag[i])))
+
+            // Check if bag2 has the item and also make sure that our results bag doesn't already have it inside
+            if (bag2.contains(bag[i]) && !(bag3.contains(bag[i])))
             {
                 // If bag2 contains this item, we will find the frequency of the item
                 int freq2 = getFrequencyOf(bag[i]);
 
-                // Store this item in a used bag so we don't call it again
-                bagUsed.add(bag[i]);
 
                 // Now we store the value that is SMALLER
-                if (freq1 >= freq2)
+                int smallerNumber = Math.min(freq1, freq2);
+                for (int j = 0; j < smallerNumber; j++)
                 {
-                    for (int j = 0; j < freq2; j++)
-                    {
-                        bag3.add(bag[i]);
-                    }
-                }
-                else
-                {
-                    for (int j = 0; j < freq1; j++)
-                    {
-                        bag3.add(bag[i]);
-                    }
+                    bag3.add(bag[i]);
                 }
             }
         }
