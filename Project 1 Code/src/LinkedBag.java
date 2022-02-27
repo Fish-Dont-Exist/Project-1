@@ -14,7 +14,12 @@ public LinkedBag()
 
 //Union, Difference, Intersection methods for linked list
 
-public BagInterface<T> union(BagInterface<T> bag2)
+   /**
+    * Combines the two entries of the two bags and returns a newly combined bag
+    * @param bag2 The second bag to be combined with
+    * @return A bag which contains the entries of both bags
+    */
+   public BagInterface<T> union(BagInterface<T> bag2)
 {
    try
    {
@@ -40,14 +45,20 @@ public BagInterface<T> union(BagInterface<T> bag2)
 
       return result;
    }
+   // Used to catch any NULL entries
    catch (NullPointerException e)
    {
       System.out.println(e.getMessage() + " nice going nerd.");
    }
    return null;
-}
+} //end union
 
-public BagInterface<T> intersection(BagInterface<T> otherBag)
+   /**
+    * Takes two bags and returns a bag containing the entries they shared
+    * @param otherBag A bag which will be intersected with the bag that is calling the method
+    * @return A bag containing the entries that the first and second bag shared
+    */
+   public BagInterface<T> intersection(BagInterface<T> otherBag)
 {
    // Set up the results bag and the used bag
 //   BagInterface<T> usedBag = new LinkedBag<>();
@@ -90,17 +101,22 @@ public BagInterface<T> intersection(BagInterface<T> otherBag)
    }
 
    return results;
-}
+} //end intersection
 
-public BagInterface<T> difference(BagInterface<T> bag2)
+   /**
+    * Takes two bags and returns the difference between the first and the second bag's entries
+    * @param bag2 A bag of items which will be subtracted from the bag that calls the method
+    * @return A bag that contains the difference between the first and the second bag's entries
+    */
+   public BagInterface<T> difference(BagInterface<T> bag2)
 {
    BagInterface<T> b3 = new LinkedBag<>();
-   Node currentNode = firstNode;
+   Node currentNode = firstNode; // Copies node
    T[] b2 = bag2.toArray();
    int amount = 0;
    for(int i = 0; i < getCurrentSize(); i++)
    {
-      T entry = currentNode.getData();
+      T entry = currentNode.getData(); //
       
       amount = this.getFrequencyOf(currentNode.getData());
       int sub = 0;
@@ -127,29 +143,45 @@ public BagInterface<T> difference(BagInterface<T> bag2)
       }  
    }
    return b3;
-}
+} //end difference
 
 
 //General methods
 
-public int getCurrentSize()
+   /**
+    * Gets the current size of the bag
+    * @return The integer value of the size of the bag
+    */
+   public int getCurrentSize()
 {
    return numberOfEntries;
 }//end getCurrentSize
 
-public boolean isEmpty()
-{
+   /**
+    * Checks to see if the bag is empty
+    * @return A boolean that is true if the bag is empty or false otherwise
+    */
+   public boolean isEmpty()
+   {
    return numberOfEntries == 0;
-}//end isEmpty
+   }//end isEmpty
 
-public void clear()
-{
+   /**
+    * Removes all entries from a bag
+    */
+   public void clear()
+   {
    while(!isEmpty())
       remove();
-}//end clear
+   }//end clear
 
-public boolean add(T newEntry)
-{
+   /**
+    * Adds an entry to the bag
+    * @param newEntry The object to be added as a new entry
+    * @return A boolean that is true if the object was successfully added and false otherwise
+    */
+   public boolean add(T newEntry)
+   {
    //Adding to the beginning of the chain
    Node newNode = new Node(newEntry); // now newNode.data = newEntry, newNode.next = null
    newNode.setNextNode(firstNode);    // now newNode.data = newEntry, newNode.next = firstNode
@@ -159,10 +191,14 @@ public boolean add(T newEntry)
    numberOfEntries++;
 
    return true;
-}//end add
+   }//end add
 
-
-private Node getReferenceTo(T anEntry)
+   /**
+    * Searches for a specific entry in a bag
+    * @param anEntry The specific entry to be searched for
+    * @return The node that the entry was found in
+    */
+   private Node getReferenceTo(T anEntry)
    {
       boolean found = false;
       Node currentNode = firstNode;
@@ -177,7 +213,11 @@ private Node getReferenceTo(T anEntry)
       return currentNode;
    }
 
-public T remove()
+   /**
+    * Attempts to remove an entry from the bag
+    * @return Returns the removed entry, or NULL otherwise
+    */
+   public T remove()
 {
    T result = null;
    if (firstNode != null)
@@ -189,7 +229,12 @@ public T remove()
    return result;
 }
 
-public boolean remove(T anEntry)
+   /**
+    * Attempts to remove an entry from the bag
+    * @param anEntry The entry to be removed.
+    * @return Returns a boolean that is true if the removal is successful and false otherwise
+    */
+   public boolean remove(T anEntry)
 {
    boolean result = false;
    Node nodeN = getReferenceTo(anEntry);
@@ -205,7 +250,12 @@ public boolean remove(T anEntry)
    return result;
 }
 
-public int getFrequencyOf(T anEntry)
+   /**
+    * Gets the frequency of the times a given entry is listed in a bag
+    * @param anEntry The entry to be counted
+    * @return Returns an integer of the amount of times the entry appears in the bag
+    */
+   public int getFrequencyOf(T anEntry)
 {
    int frequency = 0;
    int counter = 0;
@@ -222,7 +272,12 @@ public int getFrequencyOf(T anEntry)
    return frequency;
 }//end getFrequencyOf
 
-public boolean contains(T anEntry)
+   /**
+    * Searches for an entry in the bag
+    * @param anEntry The entry to find.
+    * @return Returns a boolean that is true if the entry was found and false otherwise
+    */
+   public boolean contains(T anEntry)
 {
    boolean found = false;
    Node currentNode = firstNode;
@@ -237,7 +292,11 @@ public boolean contains(T anEntry)
    return found;
 }//end contains
 
-public T[] toArray()
+   /**
+    * Retrieves all entries inside the bag
+    * @return Returns a newly created Node with all the entries in the bag
+    */
+   public T[] toArray()
 {
    @SuppressWarnings("unchecked")
    T[] result = (T[])new Object[numberOfEntries];
@@ -253,6 +312,9 @@ public T[] toArray()
    return result;
 }
 
+   /**
+    * The class used to create the node for the bag
+    */
    private class Node
    {
       private T    data; //Entry in the bag

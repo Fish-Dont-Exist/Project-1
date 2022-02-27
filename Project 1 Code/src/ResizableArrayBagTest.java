@@ -12,7 +12,7 @@ public class ResizableArrayBagTest
      */
     public static void main(String[] args)
     {
-        // Adding to an initialily empty bag with sufficient capacity.
+        // Adding to an initially empty bag with sufficient capacity.
         System.out.println("Testing an initially empty bag with sufficient capacity: ");
 
         BagInterface<String> aBag = new ResizableArrayBag<>(6);

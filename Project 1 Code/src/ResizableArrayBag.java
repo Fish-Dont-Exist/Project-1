@@ -184,8 +184,13 @@ public class ResizableArrayBag<T> implements BagInterface<T>
         return result;
     } // end toArray
 
-
     // Implement the three methods union, intersection, and difference for resizable arrays.
+
+    /**
+     * Combines the entries of two bags and returns a newly combined bag
+     * @param bag2 The second bag to unionize
+     * @return A newly unionized bag with entries from both bags
+     */
     @Override
     public BagInterface<T> union(BagInterface<T> bag2)
     {
@@ -197,7 +202,7 @@ public class ResizableArrayBag<T> implements BagInterface<T>
         {
             result.add(bag[index]);
         }
-
+        // Add all the elements from bag2 to the result
         T[] otherBag = (T[]) bag2.toArray();
         for (int index = 0; index < bag2.getCurrentSize() ; index++)
         {
@@ -205,8 +210,13 @@ public class ResizableArrayBag<T> implements BagInterface<T>
         }
 
         return result;
-    }
+    } //end union
 
+    /**
+     * Takes two bags and returns a bag containing the entries they shared
+     * @param bag2 A bag of items that will be intersected with the bag that is calling the method.
+     * @return A bag of entries of which both bags contained
+     */
     @Override
     public BagInterface<T> intersection(BagInterface<T> bag2)
     {
@@ -249,8 +259,13 @@ public class ResizableArrayBag<T> implements BagInterface<T>
             }
         }
         return bag3;
-    }
+    } //end intersection
 
+    /**
+     * Takes two bags and returns the difference between the first and the second bag's entries
+     * @param bag2 A bag of items that will be subtracted from the first bag's items
+     * @return A bag with entries containing the difference between the first and the second bag's entries
+     */
     @Override
     public BagInterface<T> difference(BagInterface<T> bag2)
     {
@@ -277,7 +292,7 @@ public class ResizableArrayBag<T> implements BagInterface<T>
          }//If item is not cancelled out add it to b3
       }//End of Loop I for b1
       return b3;
-   }
+   } //end difference
 
    private T duplicate(T bag)
     {
