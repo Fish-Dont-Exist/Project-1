@@ -285,12 +285,12 @@ public class ResizableArrayBag<T> implements BagInterface<T>
                match = true;
                break;
             }//If there is a match set item in b2 to null and break loop
-         }//End of Loop L for b2
+         }//End of Loop j for b2
          if (!match)
          {
             b3.add(b1[i]);
          }//If item is not cancelled out add it to b3
-      }//End of Loop I for b1
+      }//End of Loop i for b1
       return b3;
    } //end difference
 
