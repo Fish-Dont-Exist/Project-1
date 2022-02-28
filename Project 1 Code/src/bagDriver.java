@@ -20,7 +20,6 @@ public class bagDriver
 
         String[] contents1 = {"A", "Y", "A", "C", "d", "A"};
         String[] contents2 = {"B", "Y", "D", "A", "A"};
-        String[] contents3 = {};
         String[] contents4 = {" ", "S", "A"};
 
         linkedBag1.add(contents1[0]);
@@ -35,8 +34,6 @@ public class bagDriver
         linkedBag2.add(contents2[2]);
         linkedBag2.add(contents2[3]);
         linkedBag2.add(contents2[4]);
-
-        // linkedBag3.add(contents3[0]); not sure how to implement this
 
         linkedBag4.add(contents4[0]);
         linkedBag4.add(contents4[1]);
@@ -55,8 +52,6 @@ public class bagDriver
         resizableBag2.add(contents2[3]);
         resizableBag2.add(contents2[4]);
 
-        // resizableBag3.add(contents3[0]); same here
-
         resizableBag4.add(contents4[0]);
         resizableBag4.add(contents4[1]);
         resizableBag4.add(contents4[2]);
@@ -64,20 +59,67 @@ public class bagDriver
         /*
             Here we will begin testing out the three methods
          */
+
         // Here we shall test out the union method
+
+        System.out.println("Union method testing for linked bags");
+        linkedBag5 = linkedBag1.union(linkedBag1);
+        displayBag(linkedBag5); //Expected output = "A", "Y", "A", "C", "d", "A", "A", "Y", "A", "C", "d", "A"
         linkedBag5 = linkedBag1.union(linkedBag2);
-        System.out.println(linkedBag5); //Expected output = "A", "Y", "A", "C", "d", "A", "B", "Y", "D", "A", "A"
-        linkedBag5 = linkedBag1.union(linkedBag3); //Expected output = "A", "Y", "A", "C", "d", "A"
-        System.out.println(linkedBag5);
-        linkedBag5 = linkedBag1.union(linkedBag4); //Expected output = "A", "Y", "A", "C", "d", "A", " ", "S", "A"
-        System.out.println(linkedBag5);
-        resizableBag5 = resizableBag1.union(resizableBag2); //Expected output = "A", "Y", "A", "C", "d", "A", "B", "Y", "D", "A", "A"
-        System.out.println(resizableBag5);
-        resizableBag1.union(resizableBag3); //Expected output = "A", "Y", "A", "C", "d", "A"
-        resizableBag1.union(resizableBag4); //Expected output = "A", "Y", "A", "C", "d", "A", " ", "S", "A"
+        displayBag(linkedBag5); //Expected output = "B", "Y", "D", "A", "A", "A", "Y", "A", "C", "d", "A"
+        linkedBag5 = linkedBag1.union(linkedBag3);
+        displayBag(linkedBag5); //Expected output = "A", "Y", "A", "C", "d", "A"
+        linkedBag5 = linkedBag1.union(linkedBag4);
+        displayBag(linkedBag5); //Expected output = " ", "S", "A", "A", "Y", "A", "C", "d", "A"
+
+        System.out.println("Union testing for resizable bags");
+        resizableBag5 = resizableBag1.union(resizableBag1);
+        displayBag(resizableBag5); //Expected output = "A", "Y", "A", "C", "d", "A", "A", "Y", "A", "C", "d", "A"
+        resizableBag5 = resizableBag1.union(resizableBag2);
+        displayBag(resizableBag5); //Expected output = "A", "Y", "A", "C", "d", "A", "B", "Y", "D", "A", "A"
+        resizableBag5 = resizableBag1.union(resizableBag3);
+        displayBag(resizableBag5); //Expected output = "A", "Y", "A", "C", "d", "A"
+        resizableBag5 = resizableBag1.union(resizableBag4);
+        displayBag(resizableBag5); //Expected output = "A", "Y", "A", "C", "d", "A", " ", "S", "A"
+
+        //Here we will begin testing the intersection method
+
+        System.out.println("Intersection testing for linked bags");
+        linkedBag5 = linkedBag1.intersection(linkedBag1);
+        displayBag(linkedBag5); //Expected output = "Y", "C", "d", "A", "A", "A"
+        linkedBag5 = linkedBag1.intersection(linkedBag2);
+        displayBag(linkedBag5); //Expected output = "Y", "A", "A"
+        linkedBag5 = linkedBag1.intersection(linkedBag3);
+        displayBag(linkedBag5); //Expected output = nothing
+        linkedBag5 = linkedBag1.intersection(linkedBag4);
+        displayBag(linkedBag5); //Expected output = "A"
+
+        System.out.println("Intersection testing for resizable bags");
+        resizableBag5 = resizableBag1.intersection(resizableBag1);
+        displayBag(resizableBag5); //Expected output = "A, "Y", "A", "C", "d", "A"
+        resizableBag5 = resizableBag1.intersection(resizableBag2);
+        displayBag(resizableBag5); //Expected output = "A", "A", "Y"
+        resizableBag5 = resizableBag1.intersection(resizableBag3);
+        displayBag(resizableBag5); //Expected output = nothing
+        resizableBag5 = resizableBag1.intersection(resizableBag4);
+        displayBag(resizableBag5); //Expected output = "A"
+
+        // Here we will begin testing the difference method
+
+        System.out.println("Difference testing for linked bags");
 
 
 
 
+    }
+    public static void displayBag(BagInterface<String> aBag)
+    {
+        Object[] bagArray = aBag.toArray();
+
+        for (int index = 0; index < bagArray.length; index++)
+        {
+            System.out.print(bagArray[index] + " ");
+        } // end for
+        System.out.println("");
     }
 }
