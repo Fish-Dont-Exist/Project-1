@@ -122,7 +122,7 @@ public LinkedBag()
       int sub = 0; //Reseting the amount 
       if (b3.contains(entry))// Checks if item has been added already
       {
-         currentNode = currentNode.getNextNode();// If it is it skips the item
+         currentNode = currentNode.getNextNode();// If it is, it skips the item
       }
       else
       {

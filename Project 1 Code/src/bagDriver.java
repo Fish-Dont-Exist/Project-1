@@ -4,7 +4,7 @@
 
 public class bagDriver
 {
-    public static void main(String args[]) throws NullPointerException
+    public static void main(String[] args) throws NullPointerException
     {
         // Initializing bags
         BagInterface<String> linkedBag1 = new LinkedBag<>();
@@ -96,7 +96,7 @@ public class bagDriver
 
         System.out.println("Intersection testing for resizable bags");
         resizableBag5 = resizableBag1.intersection(resizableBag1);
-        displayBag(resizableBag5); //Expected output = "A, "Y", "A", "C", "d", "A"
+        displayBag(resizableBag5); //Expected output = "A", "Y", "A", "C", "d", "A"
         resizableBag5 = resizableBag1.intersection(resizableBag2);
         displayBag(resizableBag5); //Expected output = "A", "A", "Y"
         resizableBag5 = resizableBag1.intersection(resizableBag3);
@@ -107,6 +107,24 @@ public class bagDriver
         // Here we will begin testing the difference method
 
         System.out.println("Difference testing for linked bags");
+        linkedBag5 = linkedBag1.difference(linkedBag1);
+        displayBag(linkedBag5); //Expected output = "C", "d", "A"
+        linkedBag5 = linkedBag1.difference(linkedBag2);
+        displayBag(linkedBag5); //Expected output = "Y". "C", "d", "A", "A", "A"
+        linkedBag5 = linkedBag1.difference(linkedBag3);
+        displayBag(linkedBag5); //Expected output = Nothing
+        linkedBag5 = linkedBag1.difference(linkedBag4);
+        displayBag(linkedBag5); //Expected output = "Y", "C", "d", "A", "A"
+
+        System.out.println("Difference testing for resizable bags");
+        resizableBag5 = resizableBag1.difference(resizableBag1);
+        displayBag(resizableBag5); //Expected output = "C", "d", "A"
+        resizableBag5 = resizableBag1.difference(resizableBag2);
+        displayBag(resizableBag5); //Expected output = "A". "Y", "A", "C", "d", "A"
+        resizableBag5 = resizableBag1.difference(resizableBag3);
+        displayBag(resizableBag5); //Expected output = Nothing
+        resizableBag5 = resizableBag1.difference(resizableBag4);
+        displayBag(resizableBag5); //Expected output = "Y", "A", "C", "d", "A"
 
 
 
