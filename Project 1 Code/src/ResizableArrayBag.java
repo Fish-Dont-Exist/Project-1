@@ -227,45 +227,52 @@ public class ResizableArrayBag<T> implements BagInterface<T>
     @Override
     public BagInterface<T> intersection(BagInterface<T> bag2)
     {
-        checkIntegrity();
-        // Testing for empty bags; will return the empty bag if found
-        if (this.isEmpty())
+        try
         {
-           return this;
-        }
-        else if (bag2.isEmpty())
-        {
-            return bag2;
-        }
-        else if (this.equals(bag2))
-        {
-            return this;
-        }
-
-        // Initialize results bag
-        BagInterface<T> bag3 = new ResizableArrayBag<>();
-
-        // Get the frequency of each element in both bags & store it in bag3 the lowest of two frequencies
-        for (int i = 0; i < getCurrentSize(); i++)
-        {
-            int freq1 = getFrequencyOf(bag[i]); // This will get the frequency of the bag
-
-            // Check if bag2 has the item and also make sure that our results bag doesn't already have it inside
-            if (bag2.contains(bag[i]) && !(bag3.contains(bag[i])))
+            checkIntegrity();
+            // Testing for empty bags; will return the empty bag if found
+            if (this.isEmpty())
             {
-                // If bag2 contains this item, we will find the frequency of the item
-                int freq2 = getFrequencyOf(bag[i]);
+            return this;
+            }
+            else if (bag2.isEmpty())
+            {
+                return bag2;
+            }
+            else if (this.equals(bag2))
+            {
+                return this;
+            }
 
+            // Initialize results bag
+            BagInterface<T> bag3 = new ResizableArrayBag<>();
 
-                // Now we store the value that is SMALLER
-                int smallerNumber = Math.min(freq1, freq2);
-                for (int j = 0; j < smallerNumber; j++)
+            // Get the frequency of each element in both bags & store it in bag3 the lowest of two frequencies
+            for (int i = 0; i < getCurrentSize(); i++)
+            {
+                int freq1 = getFrequencyOf(bag[i]); // This will get the frequency of the bag
+
+                // Check if bag2 has the item and also make sure that our results bag doesn't already have it inside
+                if (bag2.contains(bag[i]) && !(bag3.contains(bag[i])))
                 {
-                    bag3.add(bag[i]);
+                    // If bag2 contains this item, we will find the frequency of the item
+                    int freq2 = getFrequencyOf(bag[i]);
+
+
+                    // Now we store the value that is SMALLER
+                    int smallerNumber = Math.min(freq1, freq2);
+                    for (int j = 0; j < smallerNumber; j++)
+                    {
+                        bag3.add(bag[i]);
+                    }
                 }
             }
-        }
-        return bag3;
+            return bag3;
+        } // end try
+        catch (NullPointerException e)
+        {
+            throw new NullPointerException("Cannot pass null as argument.");
+        } // end catch
     } //end intersection
 
     /**

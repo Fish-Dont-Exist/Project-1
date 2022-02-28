@@ -6,63 +6,55 @@ import org.junit.Test;
 
 public class ResizableArrayBagTest
 {
-    //Testing the union method
+    // TESTING UNION METHOD
     @Test
     public void unionSameSizedArraysTest()
     {
+        // Create two bags of the same size
         BagInterface<String> rab1 = new ResizableArrayBag<>(4);
         BagInterface<String> rab2 = new ResizableArrayBag<>(4);
         BagInterface<String> expectedBag = new ResizableArrayBag<>(3);
 
+        // Define the contents of each of the bags
         String[] contentsOfBag1 = {"A", "B", "C", "D"};
         String[] contentsOfBag2 = {"A", "C", "A", "B"};
         String[] contentsOfExpectedBag = {"A", "B", "C", "D", "A", "C", "A", "B"};
 
-        for (int index = 0; index < contentsOfBag1.length; index++)
-        {
-            rab1.add(contentsOfBag1[index]);
-            rab2.add(contentsOfBag2[index]);
-        }
+        // Add the contents to the bags
+        addContent(rab1, contentsOfBag1);
+        addContent(rab2, contentsOfBag2);
+        addContent(expectedBag, contentsOfExpectedBag);
 
-        for (int index = 0; index < contentsOfExpectedBag.length; index++)
-        {
-            expectedBag.add(contentsOfExpectedBag[index]);
-        }
-
-
+        // Create actual results bag
         BagInterface<String> actualBag = rab1.union(rab2);
+
+        // Test the array versions of the bags for equality
         assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
-
-
     }
 
     @Test
     public void unionDifferentSizedArraysTest()
     {
-        ResizableArrayBag<String> rab1 = new ResizableArrayBag<>();
-        ResizableArrayBag<String> rab2 = new ResizableArrayBag<>();
-        ResizableArrayBag<String> expectedBag = new ResizableArrayBag<>();
+        // Create two bags and an expected bag
+        BagInterface<String> rab1 = new ResizableArrayBag<>();
+        BagInterface<String> rab2 = new ResizableArrayBag<>();
+        BagInterface<String> expectedBag = new ResizableArrayBag<>();
 
+        // Define contents of the bags
         String[] contentsOfBag1 = {"A", "B"};
         String[] contentsOfBag2 = {"A", "A", "B", "A"};
         String[] contentsOfExpectedBag = {"A", "B", "A", "A", "B", "A"};
 
-        for (int index = 0; index < contentsOfBag1.length; index++)
-        {
-            rab1.add(contentsOfBag1[index]);
-        }
+        // Fill bags with content
+        addContent(rab1, contentsOfBag1);
+        addContent(rab2, contentsOfBag2);
+        addContent(expectedBag, contentsOfExpectedBag);
 
-        for (int index = 0; index < contentsOfBag2.length; index++)
-        {
-            rab2.add(contentsOfBag2[index]);
-        }
+        // Create actual results bag
+        BagInterface<String> actualBag = rab1.union(rab2);
 
-        for (int index = 0; index < contentsOfExpectedBag.length; index ++)
-        {
-            expectedBag.add(contentsOfExpectedBag[index]);
-        }
-
-        assertArrayEquals(expectedBag.toArray(), rab1.union(rab2).toArray());
+        // Test the array versions of the bags for equality
+        assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
     }
 
     @Test
@@ -94,27 +86,47 @@ public class ResizableArrayBagTest
         String[] contentsOfBag2 = {}; // empty bag
         String[] contentsOfExpectedBag = {"Q", "W", "E", "R"};
 
-        // Add contents to bags
-        for (int index = 0; index < contentsOfBag1.length; index++)
-        {
-            rab1.add(contentsOfBag1[index]);
-        }
+        // Add contents to the bags
+        addContent(rab1, contentsOfBag1);
+        addContent(rab2, contentsOfBag2);
+        addContent(expectedBag, contentsOfExpectedBag);
 
-        for (int index = 0; index < contentsOfExpectedBag.length; index++)
-        {
-            expectedBag.add(contentsOfExpectedBag[index]);
-        }
+        // Create actual results bag
+        BagInterface<String> actualBag = rab1.union(rab2);
 
-        // We will test unioning the bags both ways
-        assertArrayEquals(expectedBag.toArray(), rab2.union(rab1).toArray()); // unioning non-empty bag to empty bag
-        assertArrayEquals(expectedBag.toArray(), rab1.union(rab2).toArray()); // unioning empty bag to non-empty bag
+        // Test array versions of the bags for equality
+        assertArrayEquals(expectedBag.toArray(), actualBag.toArray()); // unioning empty bag to non-empty bag
+    }
 
+    @Test
+    public void unionNonEmptyBagAndOneEmptyTest()
+    {
+        // Make the two array bags as well as the expectedBag
+        BagInterface<String> rab1 = new ResizableArrayBag<>();
+        BagInterface<String> rab2 = new ResizableArrayBag<>();
+        BagInterface<String> expectedBag = new ResizableArrayBag<>();
+
+        // Get the contents of the bags
+        String[] contentsOfBag1 = {"Q", "W", "E", "R"}; // nonempty bag
+        String[] contentsOfBag2 = {}; // empty bag
+        String[] contentsOfExpectedBag = {"Q", "W", "E", "R"};
+
+        // Add contents to the bags
+        addContent(rab1, contentsOfBag1);
+        addContent(rab2, contentsOfBag2);
+        addContent(expectedBag, contentsOfExpectedBag);
+
+        // Create actual results bag
+        BagInterface<String> actualBag = rab2.union(rab1);
+
+        // Test array versions of the bags for equality
+        assertArrayEquals(expectedBag.toArray(), actualBag.toArray()); // unioning empty bag to non-empty bag
     }
 
     @Test
     public void unionTwoEmptyBagsTest()
     {
-        // Make the two array bags as well as the expectedBag
+        // Create two bags and the expected results bag
         BagInterface<String> rab1 = new ResizableArrayBag<>();
         BagInterface<String> rab2 = new ResizableArrayBag<>();
         BagInterface<String> expectedBag = new ResizableArrayBag<>();
@@ -124,45 +136,44 @@ public class ResizableArrayBagTest
         String[] contentsOfBag2 = {}; // empty bag
         String[] contentsOfExpectedBag = {};
 
+        // Add contents to bag (even if it is empty)
+        addContent(rab1, contentsOfBag1);
+        addContent(rab2, contentsOfBag2);
+        addContent(expectedBag, contentsOfExpectedBag);
+
+        // Create the actual bag
+        BagInterface<String> actualBag = rab1.union(rab2);
+
         // Test union
-        assertArrayEquals(expectedBag.toArray(), rab1.union(rab2).toArray());
+        assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
 
     }
 
     @Test
     public void unionBagToSelfTest()
     {
-        // Make only one bag that is non-empty
+        // Create one bag and one expected bag
         BagInterface<String> rab1 = new ResizableArrayBag<>();
         BagInterface<String> expectedBag = new ResizableArrayBag<>();
-        BagInterface<String> resultBag = new ResizableArrayBag<>();
-
+        
         // Create contents of the bag
         String[] contentsOfBag1 = {"A", "B", "C"};
-        // String[] contentsOfExpectedBag = {"A", "A", "B", "B", "C", "C"};
         String[] contentsOfExpectedBag = {"A", "B", "C", "A", "B", "C"};
+        
+        // Add contents to bags
+        addContent(rab1, contentsOfBag1);
+        addContent(expectedBag, contentsOfExpectedBag);
+        
+        // Create actual results bag
+        BagInterface<String> actualBag = rab1.union(rab1);
 
-        // Add contents to bag1
-        for (int index = 0; index < contentsOfBag1.length; index++)
-        {
-            rab1.add(contentsOfBag1[index]);
-        }
-
-        // Add content to expected bag
-        for (int index = 0; index < contentsOfExpectedBag.length; index ++)
-        {
-            expectedBag.add(contentsOfExpectedBag[index]);
-        }
-
-        resultBag = rab1.union(rab1);
-
-        // Test Union
-        assertArrayEquals(expectedBag.toArray(), rab1.union(rab1).toArray());
+        // Test array versions of the bags for equality
+        assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
 
     }
 
 
-    // Testing the difference method
+    // TESTING DIFFERENCE METHOD
     @Test 
     public void differenceSameSizedArraysTest()
     {
@@ -171,23 +182,20 @@ public class ResizableArrayBagTest
         BagInterface<String> rab2 = new ResizableArrayBag<>(4);
         BagInterface<String> expectedBag = new ResizableArrayBag<>(3);
 
+        // Define the contents of each of the bags
         String[] contentsOfBag1 = {"A", "B", "C", "D"};
         String[] contentsOfBag2 = {"A", "C", "A", "B"};
         String[] contentsOfExpectedBag = {"D"};
 
-        for (int index = 0; index < contentsOfBag1.length; index++)
-        {
-            rab1.add(contentsOfBag1[index]);
-            rab2.add(contentsOfBag2[index]);
-        }
-
-        for (int index = 0; index < contentsOfExpectedBag.length; index++)
-        {
-            expectedBag.add(contentsOfExpectedBag[index]);
-        }
-
-
+        // Add the contents to each of the bags
+        addContent(rab1, contentsOfBag1);
+        addContent(rab2, contentsOfBag2);
+        addContent(expectedBag, contentsOfExpectedBag);
+        
+        // Create actual results bag
         BagInterface<String> actualBag = rab1.difference(rab2);
+
+        // Test the difference of the bags
         assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
 
 
@@ -198,32 +206,24 @@ public class ResizableArrayBagTest
     {
         // This will test what happens when we take the difference between a large bag and a small bag
         // Difference between larger and smaller
-        BagInterface<String> rab1 = new ResizableArrayBag<>();
-        BagInterface<String> rab2 = new ResizableArrayBag<>();
+        BagInterface<String> rab1 = new ResizableArrayBag<>(3);
+        BagInterface<String> rab2 = new ResizableArrayBag<>(2);
         BagInterface<String> expectedBag = new ResizableArrayBag<>();
 
+        // Define the contents of the bags
         String[] contentsOfBag1 = {"A", "B", "C"};
         String[] contentsOfBag2 = {"A", "B"};
         String[] contentsOfExpectedBag = {"C"};
 
-        for (int index = 0; index < contentsOfBag1.length; index++)
-        {
-            rab1.add(contentsOfBag1[index]);
-        }
-
-        for (int index = 0; index < contentsOfBag2.length; index++)
-        {
-            rab2.add(contentsOfBag2[index]);
-        }
-
-        for (int index = 0; index < contentsOfExpectedBag.length; index ++)
-        {
-            expectedBag.add(contentsOfExpectedBag[index]);
-        }
+        // Add the contents to each of the bags
+        addContent(rab1, contentsOfBag1);
+        addContent(rab2, contentsOfBag2);
+        addContent(expectedBag, contentsOfExpectedBag);
 
         // Create actual result bag
         BagInterface<String> actualBag = rab1.difference(rab2);
-
+        
+        // Test the array version of the bags for equality. 
         assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
     }
 
@@ -232,32 +232,24 @@ public class ResizableArrayBagTest
     {
      // This will test what happens when we take the difference between a small bag and a large bag
         // Difference between larger and smaller
-        BagInterface<String> rab1 = new ResizableArrayBag<>();
-        BagInterface<String> rab2 = new ResizableArrayBag<>();
+        BagInterface<String> rab1 = new ResizableArrayBag<>(4);
+        BagInterface<String> rab2 = new ResizableArrayBag<>(5);
         BagInterface<String> expectedBag = new ResizableArrayBag<>();
 
+        // Define contents of bags
         String[] contentsOfBag1 = {"A", "B", "C", "E"};
         String[] contentsOfBag2 = {"A", "B", "A", "D", "F" };
         String[] contentsOfExpectedBag = {"C", "E"};
 
-        for (int index = 0; index < contentsOfBag1.length; index++)
-        {
-            rab1.add(contentsOfBag1[index]);
-        }
-
-        for (int index = 0; index < contentsOfBag2.length; index++)
-        {
-            rab2.add(contentsOfBag2[index]);
-        }
-
-        for (int index = 0; index < contentsOfExpectedBag.length; index ++)
-        {
-            expectedBag.add(contentsOfExpectedBag[index]);
-        }
+        // Add contents to bags
+        addContent(rab1, contentsOfBag1);
+        addContent(rab2, contentsOfBag2);
+        addContent(expectedBag, contentsOfExpectedBag);
 
         // Create actual result bag
         BagInterface<String> actualBag = rab1.difference(rab2);
 
+        // Test the array version of the bags for equality
         assertArrayEquals(expectedBag.toArray(), actualBag.toArray());   
     }
 
@@ -270,28 +262,20 @@ public class ResizableArrayBagTest
         BagInterface<String> rab2 = new ResizableArrayBag<>(4);
         BagInterface<String> expectedBag = new ResizableArrayBag<>();
 
+        // Define the contents of the bags
         String[] contentsOfBag1 = {"A", "B", "C"};
         String[] contentsOfBag2 = {"A", "B", "D", "C"};
         String[] contentsOfExpectedBag = {};
 
-        for (int index = 0; index < contentsOfBag1.length; index++)
-        {
-            rab1.add(contentsOfBag1[index]);
-        }
-
-        for (int index = 0; index < contentsOfBag2.length; index++)
-        {
-            rab2.add(contentsOfBag2[index]);
-        }
-
-        for (int index = 0; index < contentsOfExpectedBag.length; index ++)
-        {
-            expectedBag.add(contentsOfExpectedBag[index]);
-        }
+        // Add the contents to bags
+        addContent(rab1, contentsOfBag1);
+        addContent(rab2, contentsOfBag2);
+        addContent(expectedBag, contentsOfExpectedBag);
 
         // Create actual result bag
         BagInterface<String> actualBag = rab1.difference(rab2);
 
+        // Test the array version of the bags for equality
         assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
 
     }
@@ -318,7 +302,7 @@ public class ResizableArrayBagTest
     {
         // Create two bags (one empty and one non-empty) and the expected bag
         BagInterface<String> rab1 = new ResizableArrayBag<>();
-        BagInterface<String> rab2 = new ResizableArrayBag<>(); 
+        BagInterface<String> rab2 = new ResizableArrayBag<>(2); 
         BagInterface<String> expectedBag = new ResizableArrayBag<>(); 
 
         // Create content for bags
@@ -327,28 +311,14 @@ public class ResizableArrayBagTest
         String[] contentsOfExpectedBag = {};
         
         // Fill in the bags
-        // Place all of contents in bag1
-        for (int index = 0; index < contentsOfBag1.length; index++)
-        {
-            rab1.add(contentsOfBag1[index]);
-        } 
-
-        // Place appropriate contents in bag2
-        for (int index = 0; index < contentsOfBag2.length; index++)
-        {
-            rab2.add(contentsOfBag2[index]);
-        } 
-
-        // Place appropraite contents in expectedBag
-        for (int index = 0; index < contentsOfExpectedBag.length; index++)
-        {
-            expectedBag.add(contentsOfExpectedBag[index]);
-        }
+        addContent(rab1, contentsOfBag1);
+        addContent(rab2, contentsOfBag2);
+        addContent(expectedBag, contentsOfExpectedBag);
 
         // Create actual results bag
         BagInterface<String> actualBag = rab1.difference(rab2);
         
-        // Test difference
+        // Test the array version of the bags for equality
         assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
 
 
@@ -357,59 +327,276 @@ public class ResizableArrayBagTest
     @Test
     public void differenceBetweenNonEmptyBagAndEmptyBagArrayTest()
     {
+        // Create the two bags and the expectedBag
+        BagInterface<String> rab1 = new ResizableArrayBag<>(3);
+        BagInterface<String> rab2 = new ResizableArrayBag<>();
+        BagInterface<String> expectedBag = new ResizableArrayBag<>();
 
+        // Define the contents of the bags
+        String[] contentsOfBag1 = {"A", "B", "C"};
+        String[] contentsOfBag2 = {};
+        String[] contentsOfExpectedBag = {"A", "B", "C"};
+
+        // Add the contents to bags
+        addContent(rab1, contentsOfBag1);
+        addContent(rab2, contentsOfBag2);
+        addContent(expectedBag, contentsOfExpectedBag);
+
+        // Create actual result bag
+        BagInterface<String> actualBag = rab1.difference(rab2);
+
+        // Test the array version of the bags for equality
+        assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
     }
 
     @Test
     public void differenceTwoEmptyBagsTest()
     {
+        // Create the two bags and the expectedBag
+        BagInterface<String> rab1 = new ResizableArrayBag<>();
+        BagInterface<String> rab2 = new ResizableArrayBag<>();
+        BagInterface<String> expectedBag = new ResizableArrayBag<>();
+
+        // Define the contents of the bags
+        String[] contentsOfBag1 = {};
+        String[] contentsOfBag2 = {};
+        String[] contentsOfExpectedBag = {};
+
+        // Add the contents to bags
+        addContent(rab1, contentsOfBag1);
+        addContent(rab2, contentsOfBag2);
+        addContent(expectedBag, contentsOfExpectedBag);
+
+        // Create actual result bag
+        BagInterface<String> actualBag = rab1.difference(rab2);
+
+        // Test the array version of the bags for equality
+        assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
 
     }
 
     @Test
     public void differenceBagToSelfTest()
     {
+        // Create the two bags and the expectedBag
+        BagInterface<String> rab1 = new ResizableArrayBag<>();
+        BagInterface<String> expectedBag = new ResizableArrayBag<>();
+
+        // Define the contents of the bags
+        String[] contentsOfBag1 = {"A", "B", "C"};
+        String[] contentsOfExpectedBag = {};
+
+        // Add the contents to bags
+        addContent(rab1, contentsOfBag1);
+        addContent(expectedBag, contentsOfExpectedBag);
+
+        // Create actual result bag
+        BagInterface<String> actualBag = rab1.difference(rab1);
+
+        // Test the array version of the bags for equality
+        assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
 
     }
     
     
-    // Testing the intersection method
+    // TESTING THE INTERSECTION METHOD
     @Test 
-    public void intersectionSameSizedArraysTest()
+    public void intersectionSameSizedArraysWithNoRepeatsTest()
     {
+        // Create the two bags and the expectedBag
+        BagInterface<String> rab1 = new ResizableArrayBag<>(4);
+        BagInterface<String> rab2 = new ResizableArrayBag<>(4);
+        BagInterface<String> expectedBag = new ResizableArrayBag<>();
 
+        // Define the contents of the bags
+        String[] contentsOfBag1 = {"A", "B", "C", "E"};
+        String[] contentsOfBag2 = {"A", "B", "D", "C"};
+        String[] contentsOfExpectedBag = {"A", "B", "C"};
+
+        // Add the contents to bags
+        addContent(rab1, contentsOfBag1);
+        addContent(rab2, contentsOfBag2);
+        addContent(expectedBag, contentsOfExpectedBag);
+
+        // Create actual result bag
+        BagInterface<String> actualBag = rab1.intersection(rab2);
+
+        // Test the array version of the bags for equality
+        assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
+    }
+
+    @Test
+    public void intersectionSameSizedArraysWithRepeatsTest()
+    {
+        // Create the two bags and the expectedBag
+        BagInterface<String> rab1 = new ResizableArrayBag<>(5);
+        BagInterface<String> rab2 = new ResizableArrayBag<>(5);
+        BagInterface<String> expectedBag = new ResizableArrayBag<>();
+
+        // Define the contents of the bags
+        String[] contentsOfBag1 = {"A", "B", "C", "C", "E"};
+        String[] contentsOfBag2 = {"A", "B", "C", "D", "C"};
+        String[] contentsOfExpectedBag = {"A", "B", "C", "C"};
+
+        // Add the contents to bags
+        addContent(rab1, contentsOfBag1);
+        addContent(rab2, contentsOfBag2);
+        addContent(expectedBag, contentsOfExpectedBag);
+
+        // Create actual result bag
+        BagInterface<String> actualBag = rab1.intersection(rab2);
+
+        // Test the array version of the bags for equality
+        assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
     }
 
     @Test
     public void intersectionDifferentSizedArraysTest()
     {
-        // Difference between larger and smaller
+        // Create the two bags and the expectedBag
+        BagInterface<String> rab1 = new ResizableArrayBag<>();
+        BagInterface<String> rab2 = new ResizableArrayBag<>();
+        BagInterface<String> expectedBag = new ResizableArrayBag<>();
 
-        // Difference between smaller and larger
+        // Define the contents of the bags
+        String[] contentsOfBag1 = {"B", "A"};
+        String[] contentsOfBag2 = {"A", "B", "A"};
+        String[] contentsOfExpectedBag = {"B", "A"};
+
+        // Add the contents to bags
+        addContent(rab1, contentsOfBag1);
+        addContent(rab2, contentsOfBag2);
+        addContent(expectedBag, contentsOfExpectedBag);
+
+        // Create actual result bag
+        BagInterface<String> actualBag = rab1.intersection(rab2);
+
+        // Test the array version of the bags for equality
+        assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
     }
 
     @Test 
     public void intersectionOneArrayNullAndOtherNotTest()
     {
+        // Testing the case that one of the bagInterfaces is null
+        BagInterface<String> rab1 = new ResizableArrayBag<>();
+        BagInterface<String> rab2 = null;
+
+        // Make resizable array bag 1 not empty
+        rab1.add("A");
+
+        // Test union: Should throw NullPointerException (Got this from watching youtube tutorial on junit test cases)
+        assertThrows(NullPointerException.class, () -> {
+            rab1.intersection(rab2);
+        });
 
     }
 
     @Test
-    public void intersectionOneEmptyBagAndOneNonEmptyTest()
+    public void intersectionOneEmptyBagAndOneNonEmptyArrayTest()
     {
+        // Create the two bags and the expectedBag
+        BagInterface<String> rab1 = new ResizableArrayBag<>();
+        BagInterface<String> rab2 = new ResizableArrayBag<>();
+        BagInterface<String> expectedBag = new ResizableArrayBag<>();
 
+        // Define the contents of the bags
+        String[] contentsOfBag1 = {};
+        String[] contentsOfBag2 = {"A", "B", "C"};
+        String[] contentsOfExpectedBag = {};
+
+        // Add the contents to bags
+        addContent(rab1, contentsOfBag1);
+        addContent(rab2, contentsOfBag2);
+        addContent(expectedBag, contentsOfExpectedBag);
+
+        // Create actual result bag
+        BagInterface<String> actualBag = rab1.intersection(rab2);
+
+        // Test the array version of the bags for equality
+        assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
+    }
+
+    @Test
+    public void intersectionNonEmptyAndEmptyBagArrayTest()
+    {
+       // Create the two bags and the expectedBag
+       BagInterface<String> rab1 = new ResizableArrayBag<>();
+       BagInterface<String> rab2 = new ResizableArrayBag<>();
+       BagInterface<String> expectedBag = new ResizableArrayBag<>();
+
+       // Define the contents of the bags
+       String[] contentsOfBag1 = {"A", "B", "C"};
+       String[] contentsOfBag2 = {};
+       String[] contentsOfExpectedBag = {};
+
+       // Add the contents to bags
+       addContent(rab1, contentsOfBag1);
+       addContent(rab2, contentsOfBag2);
+       addContent(expectedBag, contentsOfExpectedBag);
+
+       // Create actual result bag
+       BagInterface<String> actualBag = rab1.intersection(rab2);
+
+       // Test the array version of the bags for equality
+       assertArrayEquals(expectedBag.toArray(), actualBag.toArray()); 
     }
 
     @Test
     public void intersectionTwoEmptyBagsTest()
     {
+        // Create the two bags and the expectedBag
+        BagInterface<String> rab1 = new ResizableArrayBag<>();
+        BagInterface<String> rab2 = new ResizableArrayBag<>();
+        BagInterface<String> expectedBag = new ResizableArrayBag<>();
 
+        // Define the contents of the bags
+        String[] contentsOfBag1 = {};
+        String[] contentsOfBag2 = {};
+        String[] contentsOfExpectedBag = {};
+
+        // Add the contents to bags
+        addContent(rab1, contentsOfBag1);
+        addContent(rab2, contentsOfBag2);
+        addContent(expectedBag, contentsOfExpectedBag);
+
+        // Create actual result bag
+        BagInterface<String> actualBag = rab1.intersection(rab2);
+
+        // Test the array version of the bags for equality
+        assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
     }
 
     @Test
     public void intersectionBagToSelfTest()
     {
+        // Create the two bags and the expectedBag
+        BagInterface<String> rab1 = new ResizableArrayBag<>();
+        BagInterface<String> expectedBag = new ResizableArrayBag<>();
+
+        // Define the contents of the bags
+        String[] contentsOfBag1 = {"A", "B"};
+        String[] contentsOfExpectedBag = {"A", "B"};
+
+        // Add the contents to bags
+        addContent(rab1, contentsOfBag1);
+        addContent(expectedBag, contentsOfExpectedBag);
+
+        // Create actual result bag
+        BagInterface<String> actualBag = rab1.intersection(rab1);
+
+        // Test the array version of the bags for equality
+        assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
         
+    }
+
+    // Helper function 
+    public static void addContent(BagInterface<String> aBag, String[] content)
+    {
+        for (int index = 0; index < content.length; index ++)
+        {
+            aBag.add(content[index]);
+        } // end for
     }
 
 }
