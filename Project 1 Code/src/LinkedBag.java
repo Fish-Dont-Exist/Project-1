@@ -110,19 +110,19 @@ public LinkedBag()
     */
    public BagInterface<T> difference(BagInterface<T> bag2)
 {
-   BagInterface<T> b3 = new LinkedBag<>();
+   BagInterface<T> b3 = new LinkedBag<>(); //Creates the bag that will be returned with the difference
    Node currentNode = firstNode; // Copies node
-   T[] b2 = bag2.toArray();
+   T[] b2 = bag2.toArray(); //Initializing bag2 as an array
    int amount = 0;
    for(int i = 0; i < getCurrentSize(); i++)
    {
-      T entry = currentNode.getData(); //
+      T entry = currentNode.getData(); // Gets the data of the current entry
       
-      amount = this.getFrequencyOf(currentNode.getData());
-      int sub = 0;
-      if (b3.contains(entry))
+      amount = this.getFrequencyOf(currentNode.getData()); //Gets frequency of the entry
+      int sub = 0; //Reseting the amount 
+      if (b3.contains(entry))// Checks if item has been added already
       {
-         currentNode = currentNode.getNextNode();
+         currentNode = currentNode.getNextNode();// If it is it skips the item
       }
       else
       {
@@ -130,19 +130,19 @@ public LinkedBag()
          {
             if(entry.equals(b2[k]))
             {
-               sub += 1;
+               sub += 1; // Finds out how many of the entry are in the second bag and puts it into sub
             }
-         }
+         } // Ends k loop
 
-         amount = amount - sub;
+         amount = amount - sub; // Finds out amount of an item.
          for(int j = 0; j < amount; j++)
          {
-            b3.add(entry);
+            b3.add(entry); //Adds entry to b3 equal to amount of an items. 
          }
-         currentNode = currentNode.getNextNode();
-      }  
-   }
-   return b3;
+         currentNode = currentNode.getNextNode(); //Goes to the next Node
+      }  // End j loop
+   } // End i loop
+   return b3; // Returns the difference in a new linked bag
 } //end difference
 
 
