@@ -194,22 +194,29 @@ public class ResizableArrayBag<T> implements BagInterface<T>
     @Override
     public BagInterface<T> union(BagInterface<T> bag2)
     {
-        checkIntegrity();
-        BagInterface<T> result = new ResizableArrayBag<>();
-
-        // Add all the elements from bag1 to the result
-        for (int index = 0; index < getCurrentSize() ; index++)
+        try
         {
-            result.add(bag[index]);
-        }
-        // Add all the elements from bag2 to the result
-        T[] otherBag = (T[]) bag2.toArray();
-        for (int index = 0; index < bag2.getCurrentSize() ; index++)
-        {
-            result.add(otherBag[index]);
-        }
+            checkIntegrity();
+            BagInterface<T> result = new ResizableArrayBag<>();
 
-        return result;
+            // Add all the elements from bag1 to the result
+            for (int index = 0; index < getCurrentSize(); index++)
+            {
+                result.add(bag[index]);
+            }
+            // Add all the elements from bag2 to the result
+            T[] otherBag = (T[]) bag2.toArray();
+            for (int index = 0; index < bag2.getCurrentSize(); index++)
+            {
+                result.add(otherBag[index]);
+            }
+
+            return result;
+        } // end try
+        catch (NullPointerException e)
+        {
+            throw new NullPointerException("Argument cannot be null.");
+        } // end catch
     } //end union
 
     /**
