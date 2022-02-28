@@ -79,9 +79,11 @@ public class ResizableArrayBagTest
 
       //Test Case different Size Arrays - Bigger B1
       System.out.println("\nDifference general use case where arrays are different sizes");
-      System.out.println("\nDisplaying the contents of bag1 \n");
       String[] c = {"A", "B"};
       testAdd(diffBag1, c);//db1 Should be A B C A B
+      System.out.print(" Was successfully added to bag1");
+      System.out.println("\nDisplaying the contents of bag1 \n");
+      displayBag(diffBag1);
 
       System.out.println("\nDisplaying the contents of bag2 \n");
       displayBag(diffBag2);//db2 should be A C D
@@ -142,7 +144,7 @@ public class ResizableArrayBagTest
         String[] i5 = {"A", "C", "D", "B", "B"};
         testAdd(interBag5, i5);
 
-        BagInterface<String> interBag6 = interBag4.intersection(interBag5); //Expected output is A, C
+        BagInterface<String> interBag6 = interBag4.intersection(interBag5); //Expected output is A, B
         System.out.println("\nDisplaying the difference between the two");
 
         displayBag(interBag6);
@@ -188,6 +190,7 @@ public class ResizableArrayBagTest
         {
             System.out.print(bagArray[index] + " ");
         } // end for
+        System.out.println("");
     }
 
     public static void testUnion(BagInterface<String> aBag, BagInterface<String> bBag, String[] content)

@@ -194,7 +194,7 @@ public LinkedBag()
    }//end add
 
    /**
-    * Searches for a specific entry in a bag
+    * Searches for a specific node containing an entry in a bag
     * @param anEntry The specific entry to be searched for
     * @return The node that the entry was found in
     */
