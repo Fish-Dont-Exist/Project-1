@@ -5,8 +5,9 @@ import org.junit.Test;
 
 public class ResizableArrayBagTest
 {
+    //Testing the union method
     @Test
-    public void sameSizedArraysTest()
+    public void unionSameSizedArraysTest()
     {
         BagInterface<String> rab1 = new ResizableArrayBag<>(4);
         BagInterface<String> rab2 = new ResizableArrayBag<>(4);
@@ -35,7 +36,7 @@ public class ResizableArrayBagTest
     }
 
     @Test
-    public void differentSizedArraysTest()
+    public void unionDifferentSizedArraysTest()
     {
         ResizableArrayBag<String> rab1 = new ResizableArrayBag<>();
         ResizableArrayBag<String> rab2 = new ResizableArrayBag<>();
@@ -64,7 +65,7 @@ public class ResizableArrayBagTest
     }
 
     @Test
-    public void oneArrayNullAndOtherNotTest()
+    public void unionOneArrayNullAndOtherNotTest()
     {
         // Testing the case that one of the bagInterfaces is null
         BagInterface<String> rab1 = new ResizableArrayBag<>();
@@ -84,7 +85,7 @@ public class ResizableArrayBagTest
     }
 
     @Test
-    public void oneEmptyBagAndOneNonEmptyTest()
+    public void unionOneEmptyBagAndOneNonEmptyTest()
     {
         // Make the two array bags as well as the expectedBag
         BagInterface<String> rab1 = new ResizableArrayBag<>();
@@ -162,4 +163,85 @@ public class ResizableArrayBagTest
         assertArrayEquals(expectedBag.toArray(), rab1.union(rab1).toArray());
 
     }
+
+
+    // Testing the difference method
+    @Test 
+    public void differenceSameSizedArraysTest()
+    {
+
+    }
+
+    @Test
+    public void differenceDifferentSizedArraysTest()
+    {
+        // Difference between larger and smaller
+
+        // Difference between smaller and larger
+    }
+
+    @Test 
+    public void differenceOneArrayNullAndOtherNotTest()
+    {
+
+    }
+
+    @Test
+    public void differenceOneEmptyBagAndOneNonEmptyTest()
+    {
+
+    }
+
+    @Test
+    public void differenceTwoEmptyBagsTest()
+    {
+
+    }
+
+    @Test
+    public void differenceBagToSelfTest()
+    {
+
+    }
+    
+    
+    // Testing the intersection method
+    @Test 
+    public void intersectionSameSizedArraysTest()
+    {
+
+    }
+
+    @Test
+    public void intersectionDifferentSizedArraysTest()
+    {
+        // Difference between larger and smaller
+
+        // Difference between smaller and larger
+    }
+
+    @Test 
+    public void intersectionOneArrayNullAndOtherNotTest()
+    {
+
+    }
+
+    @Test
+    public void intersectionOneEmptyBagAndOneNonEmptyTest()
+    {
+
+    }
+
+    @Test
+    public void intersectionTwoEmptyBagsTest()
+    {
+
+    }
+
+    @Test
+    public void intersectionBagToSelfTest()
+    {
+        
+    }
+
 }
