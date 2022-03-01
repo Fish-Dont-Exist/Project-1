@@ -222,6 +222,17 @@ public class bagDriver
         displayBag(resizableBag5); //Expected output = "A"
         
         System.out.println("-------------------------------------------------------------------------------------------------------------");
+
+        System.out.println("Let's check to see if interoperability is satisfied by intersecting a resizable array bag with a linked bag: ");
+        System.out.print("Resizable Arrag Bag: ");
+        displayBag(resizableBag1);
+        System.out.print("\nLinked Bag: ");
+        displayBag(linkedBag2);
+
+        System.out.print("\nResult of resizableBag1.union(linkedBag2): ");
+        displayBag(resizableBag1.intersection(linkedBag2));
+
+        System.out.println("-------------------------------------------------------------------------------------------------------------");
         
         // Here we will begin testing the difference method
         System.out.println("Difference testing for linked bags");
@@ -301,6 +312,19 @@ public class bagDriver
         System.out.println("The difference of resizable bag 1 and resizable bag 4 is: ");
         resizableBag5 = resizableBag1.difference(resizableBag4);
         displayBag(resizableBag5); //Expected output = "Y", "A", "C", "d", "A"
+
+        System.out.println("-------------------------------------------------------------------------------------------------------------");
+
+        System.out.println("Let's check to see if interoperability is satisfied by difference between a resizable array bag with a linked bag: ");
+        System.out.print("Resizable Arrag Bag: ");
+        displayBag(resizableBag1);
+        System.out.print("\nLinked Bag: ");
+        displayBag(linkedBag2);
+
+        System.out.print("\nResult of resizableBag1.union(linkedBag2): ");
+        displayBag(resizableBag1.difference(linkedBag2));
+
+        System.out.println("-------------------------------------------------------------------------------------------------------------");
 
 
 
