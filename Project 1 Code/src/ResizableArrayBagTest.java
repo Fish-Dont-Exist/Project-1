@@ -612,6 +612,11 @@ public class ResizableArrayBagTest
     }
 
     // Helper functions
+    /**
+     * Will take all of the items in content and add them to the bag aBag. 
+     * @param aBag    The bag we will be adding content to 
+     * @param content The content we will add to the bag
+     */
     public static void addContent(BagInterface<String> aBag, String[] content)
     {
         for (int index = 0; index < content.length; index ++)
@@ -620,6 +625,13 @@ public class ResizableArrayBagTest
         } // end for
     }
 
+    /**
+     * Will check if all the items inside bag1 appear in bag2
+     * @param <T> The data type of the BagInterface
+     * @param bag1 The first bag we take in 
+     * @param bag2 The second bag we take in
+     * @return True if everything in bag1 appears in bag2, false otherwise 
+     */
     public static <T> boolean checkContains(BagInterface<T> bag1, BagInterface<T> bag2)
     {
         // Check if all the items in bag2 appear in bag2
