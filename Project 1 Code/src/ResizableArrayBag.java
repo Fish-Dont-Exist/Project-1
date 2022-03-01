@@ -256,7 +256,7 @@ public class ResizableArrayBag<T> implements BagInterface<T>
                 if (bag2.contains(bag[i]) && !(bag3.contains(bag[i])))
                 {
                     // If bag2 contains this item, we will find the frequency of the item
-                    int freq2 = getFrequencyOf(bag[i]);
+                    int freq2 = bag2.getFrequencyOf(bag[i]);
 
 
                     // Now we store the value that is SMALLER
