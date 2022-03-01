@@ -48,9 +48,8 @@ public LinkedBag()
    // Used to catch any NULL entries
    catch (NullPointerException e)
    {
-      System.out.println(e.getMessage() + " nice going nerd.");
+      throw new NullPointerException("Cannot pass null as argument");
    }
-   return null;
 } //end union
 
    /**
