@@ -1,6 +1,7 @@
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -29,7 +30,9 @@ public class LinkedBagTest
         BagInterface<String> actualBag = rab1.union(rab2);
 
         // Test the array versions of the bags for equality
-        assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
+        // assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
+        assertTrue(checkContains(actualBag, expectedBag)); 
+        
     }
 
     @Test
@@ -54,7 +57,8 @@ public class LinkedBagTest
         BagInterface<String> actualBag = rab1.union(rab2);
 
         // Test the array versions of the bags for equality
-        assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
+        // assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
+        assertTrue(checkContains(actualBag, expectedBag)); 
     }
 
     @Test
@@ -95,7 +99,8 @@ public class LinkedBagTest
         BagInterface<String> actualBag = rab1.union(rab2);
 
         // Test array versions of the bags for equality
-        assertArrayEquals(expectedBag.toArray(), actualBag.toArray()); // unioning empty bag to non-empty bag
+        // assertArrayEquals(expectedBag.toArray(), actualBag.toArray()); // unioning empty bag to non-empty bag
+        assertTrue(checkContains(actualBag, expectedBag)); 
     }
 
     @Test
@@ -120,7 +125,8 @@ public class LinkedBagTest
         BagInterface<String> actualBag = rab2.union(rab1);
 
         // Test array versions of the bags for equality
-        assertArrayEquals(expectedBag.toArray(), actualBag.toArray()); // unioning empty bag to non-empty bag
+        // assertArrayEquals(expectedBag.toArray(), actualBag.toArray()); // unioning empty bag to non-empty bag
+        assertTrue(checkContains(actualBag, expectedBag)); 
     }
 
     @Test
@@ -145,8 +151,8 @@ public class LinkedBagTest
         BagInterface<String> actualBag = rab1.union(rab2);
 
         // Test union
-        assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
-
+        // assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
+        assertTrue(checkContains(actualBag, expectedBag)); 
     }
 
     @Test
@@ -168,8 +174,8 @@ public class LinkedBagTest
         BagInterface<String> actualBag = rab1.union(rab1);
 
         // Test array versions of the bags for equality
-        assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
-
+        // assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
+        assertTrue(checkContains(actualBag, expectedBag)); 
     }
 
 
@@ -196,7 +202,8 @@ public class LinkedBagTest
         BagInterface<String> actualBag = rab1.difference(rab2);
 
         // Test the difference of the bags
-        assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
+        // assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
+        assertTrue(checkContains(actualBag, expectedBag)); 
     }
 
     @Test
@@ -221,7 +228,8 @@ public class LinkedBagTest
         BagInterface<String> actualBag = rab1.difference(rab2);
 
         // Test the difference of the bags
-        assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
+        // assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
+        assertTrue(checkContains(actualBag, expectedBag)); 
     }
 
     @Test
@@ -247,7 +255,8 @@ public class LinkedBagTest
         BagInterface<String> actualBag = rab1.difference(rab2);
 
         // Test the array version of the bags for equality
-        assertArrayEquals(expectedBag.toArray(), actualBag.toArray());   
+        // assertArrayEquals(expectedBag.toArray(), actualBag.toArray()); 
+        assertTrue(checkContains(actualBag, expectedBag));   
     }
 
     @Test
@@ -273,8 +282,8 @@ public class LinkedBagTest
         BagInterface<String> actualBag = rab1.difference(rab2);
 
         // Test the array version of the bags for equality
-        assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
-
+        // assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
+        assertTrue(checkContains(actualBag, expectedBag)); 
     }
 
     @Test 
@@ -316,9 +325,8 @@ public class LinkedBagTest
         BagInterface<String> actualBag = rab1.difference(rab2);
         
         // Test the array version of the bags for equality
-        assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
-
-
+        // assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
+        assertTrue(checkContains(actualBag, expectedBag)); 
     }
 
     @Test
@@ -343,7 +351,8 @@ public class LinkedBagTest
         BagInterface<String> actualBag = rab1.difference(rab2);
 
         // Test the array version of the bags for equality
-        assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
+        // assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
+        assertTrue(checkContains(actualBag, expectedBag)); 
     }
 
     @Test
@@ -368,8 +377,8 @@ public class LinkedBagTest
         BagInterface<String> actualBag = rab1.difference(rab2);
 
         // Test the array version of the bags for equality
-        assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
-
+        // assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
+        assertTrue(checkContains(actualBag, expectedBag)); 
     }
 
     @Test
@@ -391,8 +400,8 @@ public class LinkedBagTest
         BagInterface<String> actualBag = rab1.difference(rab1);
 
         // Test the array version of the bags for equality
-        assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
-
+        // assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
+        assertTrue(checkContains(actualBag, expectedBag)); 
     }
     
     
@@ -419,7 +428,8 @@ public class LinkedBagTest
         BagInterface<String> actualBag = rab1.intersection(rab2);
 
         // Test the array version of the bags for equality
-        assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
+        // assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
+        assertTrue(checkContains(actualBag, expectedBag)); 
     }
 
     @Test
@@ -444,7 +454,8 @@ public class LinkedBagTest
         BagInterface<String> actualBag = rab1.intersection(rab2);
 
         // Test the array version of the bags for equality
-        assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
+        // assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
+        assertTrue(checkContains(actualBag, expectedBag)); 
     }
 
     @Test
@@ -469,7 +480,8 @@ public class LinkedBagTest
         BagInterface<String> actualBag = rab1.intersection(rab2);
 
         // Test the array version of the bags for equality
-        assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
+        // assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
+        assertTrue(checkContains(actualBag, expectedBag)); 
     }
 
     @Test 
@@ -511,7 +523,8 @@ public class LinkedBagTest
         BagInterface<String> actualBag = rab1.intersection(rab2);
 
         // Test the array version of the bags for equality
-        assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
+        // assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
+        assertTrue(checkContains(actualBag, expectedBag)); 
     }
 
     @Test
@@ -536,7 +549,8 @@ public class LinkedBagTest
        BagInterface<String> actualBag = rab1.intersection(rab2);
 
        // Test the array version of the bags for equality
-       assertArrayEquals(expectedBag.toArray(), actualBag.toArray()); 
+    //    assertArrayEquals(expectedBag.toArray(), actualBag.toArray()); 
+    assertTrue(checkContains(actualBag, expectedBag)); 
     }
 
     @Test
@@ -561,7 +575,8 @@ public class LinkedBagTest
         BagInterface<String> actualBag = rab1.intersection(rab2);
 
         // Test the array version of the bags for equality
-        assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
+        // assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
+        assertTrue(checkContains(actualBag, expectedBag)); 
     }
 
     @Test
@@ -583,8 +598,8 @@ public class LinkedBagTest
         BagInterface<String> actualBag = rab1.intersection(rab1);
 
         // Test the array version of the bags for equality
-        assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
-        
+        // assertArrayEquals(expectedBag.toArray(), actualBag.toArray());
+        assertTrue(checkContains(actualBag, expectedBag)); 
     }
 
     // Helper function 
@@ -595,4 +610,26 @@ public class LinkedBagTest
             aBag.add(content[index]);
         } // end for
     } // end addContent
+
+    public static <T> boolean checkContains(BagInterface<T> bag1, BagInterface<T> bag2)
+    {
+        // Check if all the items in bag2 appear in bag2
+        T[] lettersInBag1 = (T[]) bag2.toArray();
+        if (bag1.getCurrentSize() == bag2.getCurrentSize())
+        {
+            for (int index = 0; index < bag1.getCurrentSize(); index++)
+            {
+                if (!(bag2.contains(lettersInBag1[index])))
+                {
+                    return false;
+                }
+                
+            }
+        }
+        else 
+        {
+            return false; 
+        } // end if - else statement 
+        return true; 
+    }
 }
