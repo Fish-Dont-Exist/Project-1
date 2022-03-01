@@ -15,7 +15,9 @@ Created the difference methods and their tests
 Calculated the Big O Notation for each method
 
 Jesse Chu:
-
+Created Javadocs for methods
+Created Javadoc files
+Created bagDriver.java
 
 3. Implemented unit test class unsing framework
 
