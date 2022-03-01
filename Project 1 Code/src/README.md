@@ -10,7 +10,7 @@ Contributed to Big O Notation for each method
 
 
 Benjamin Dinh:
-Created LinkedBag.java 
+Created LinkedBag.java
 Created the difference methods and their tests 
 Calculated the Big O Notation for each method
 
@@ -21,6 +21,6 @@ Created bagDriver.java
 
 3. Implemented unit test class unsing framework
 
-4.Link to Video: 
+4.Link to Video: https://youtu.be/WepkUINVjjc
 
 5.Link to Javadoc start page:
