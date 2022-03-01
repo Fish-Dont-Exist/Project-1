@@ -6,7 +6,10 @@ public class LinkedBag<T> implements BagInterface<T>
 private Node firstNode;
 private int numberOfEntries;
 
-public LinkedBag()
+   /**
+    * Creates an empty bag which contains no entries.
+    */
+   public LinkedBag()
 {
    firstNode = null;
    numberOfEntries = 0;
@@ -15,9 +18,9 @@ public LinkedBag()
 //Union, Difference, Intersection methods for linked list
 
    /**
-    * Combines the two entries of the two bags and returns a newly combined bag
-    * @param bag2 The second bag to be combined with
-    * @return A bag which contains the entries of both bags
+    * Combines the two entries of the two bags and returns a newly combined bag.
+    * @param bag2 The second bag to be combined with.
+    * @return A bag which contains the entries of both bags.
     */
    public BagInterface<T> union(BagInterface<T> bag2)
 {
@@ -53,9 +56,9 @@ public LinkedBag()
 } //end union
 
    /**
-    * Takes two bags and returns a bag containing the entries they shared
-    * @param otherBag A bag which will be intersected with the bag that is calling the method
-    * @return A bag containing the entries that the first and second bag shared
+    * Takes two bags and returns a bag containing the entries they shared.
+    * @param otherBag A bag which will be intersected with the bag that is calling the method.
+    * @return A bag containing the entries that the first and second bag shared.
     */
    public BagInterface<T> intersection(BagInterface<T> otherBag)
 {
@@ -103,9 +106,9 @@ public LinkedBag()
 } //end intersection
 
    /**
-    * Takes two bags and returns the difference between the first and the second bag's entries
-    * @param bag2 A bag of items which will be subtracted from the bag that calls the method
-    * @return A bag that contains the difference between the first and the second bag's entries
+    * Takes two bags and returns the difference between the first and the second bag's entries.
+    * @param bag2 A bag of items which will be subtracted from the bag that calls the method.
+    * @return A bag that contains the difference between the first and the second bag's entries.
     */
    public BagInterface<T> difference(BagInterface<T> bag2)
 {
@@ -148,8 +151,8 @@ public LinkedBag()
 //General methods
 
    /**
-    * Gets the current size of the bag
-    * @return The integer value of the size of the bag
+    * Gets the current size of the bag.
+    * @return The integer value of the size of the bag.
     */
    public int getCurrentSize()
 {
@@ -157,8 +160,8 @@ public LinkedBag()
 }//end getCurrentSize
 
    /**
-    * Checks to see if the bag is empty
-    * @return A boolean that is true if the bag is empty or false otherwise
+    * Checks to see if the bag is empty.
+    * @return A boolean that is true if the bag is empty or false otherwise.
     */
    public boolean isEmpty()
    {
@@ -166,7 +169,7 @@ public LinkedBag()
    }//end isEmpty
 
    /**
-    * Removes all entries from a bag
+    * Removes all entries from a bag.
     */
    public void clear()
    {
@@ -175,9 +178,9 @@ public LinkedBag()
    }//end clear
 
    /**
-    * Adds an entry to the bag
-    * @param newEntry The object to be added as a new entry
-    * @return A boolean that is true if the object was successfully added and false otherwise
+    * Adds an entry to the bag.
+    * @param newEntry The object to be added as a new entry.
+    * @return A boolean that is true if the object was successfully added and false otherwise.
     */
    public boolean add(T newEntry)
    {
@@ -193,9 +196,9 @@ public LinkedBag()
    }//end add
 
    /**
-    * Searches for a specific node containing an entry in a bag
-    * @param anEntry The specific entry to be searched for
-    * @return The node that the entry was found in
+    * Searches for a specific node containing an entry in a bag.
+    * @param anEntry The specific entry to be searched for.
+    * @return The node that the entry was found in.
     */
    private Node getReferenceTo(T anEntry)
    {
@@ -213,8 +216,8 @@ public LinkedBag()
    }
 
    /**
-    * Attempts to remove an entry from the bag
-    * @return Returns the removed entry, or NULL otherwise
+    * Attempts to remove an entry from the bag.
+    * @return Returns the removed entry, or NULL otherwise.
     */
    public T remove()
 {
@@ -229,9 +232,9 @@ public LinkedBag()
 }
 
    /**
-    * Attempts to remove an entry from the bag
+    * Attempts to remove an entry from the bag.
     * @param anEntry The entry to be removed.
-    * @return Returns a boolean that is true if the removal is successful and false otherwise
+    * @return Returns a boolean that is true if the removal is successful and false otherwise.
     */
    public boolean remove(T anEntry)
 {
@@ -250,9 +253,9 @@ public LinkedBag()
 }
 
    /**
-    * Gets the frequency of the times a given entry is listed in a bag
-    * @param anEntry The entry to be counted
-    * @return Returns an integer of the amount of times the entry appears in the bag
+    * Gets the frequency of the times a given entry is listed in a bag.
+    * @param anEntry The entry to be counted.
+    * @return Returns an integer of the amount of times the entry appears in the bag.
     */
    public int getFrequencyOf(T anEntry)
 {
@@ -272,9 +275,9 @@ public LinkedBag()
 }//end getFrequencyOf
 
    /**
-    * Searches for an entry in the bag
+    * Searches for an entry in the bag.
     * @param anEntry The entry to find.
-    * @return Returns a boolean that is true if the entry was found and false otherwise
+    * @return Returns a boolean that is true if the entry was found and false otherwise.
     */
    public boolean contains(T anEntry)
 {
@@ -292,8 +295,8 @@ public LinkedBag()
 }//end contains
 
    /**
-    * Retrieves all entries inside the bag
-    * @return Returns a newly created Node with all the entries in the bag
+    * Retrieves all entries inside the bag.
+    * @return Returns a newly created Node with all the entries in the bag.
     */
    public T[] toArray()
 {
@@ -312,7 +315,7 @@ public LinkedBag()
 }
 
    /**
-    * The class used to create the node for the bag
+    * The class used to create the node for the bag.
     */
    private class Node
    {
